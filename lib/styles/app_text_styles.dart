@@ -79,6 +79,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.hintColor,
   );
+
   static TextStyle textbottom= TextStyle(
     fontSize: 16.sp,
     fontFamily: 'SF Pro Display',

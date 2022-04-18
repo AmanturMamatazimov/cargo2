@@ -67,6 +67,7 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     },
+
                     child: Container(
                       width: 164,
                       height: 55,

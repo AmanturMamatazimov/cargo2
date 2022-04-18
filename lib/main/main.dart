@@ -31,6 +31,7 @@ class _MainState extends State<Main> {
     return Scaffold(
       body: screens[index],
 
+
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

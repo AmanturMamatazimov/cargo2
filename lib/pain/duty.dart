@@ -9,6 +9,7 @@ class Duty extends StatefulWidget {
 
 class _DutyState extends State<Duty> {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
