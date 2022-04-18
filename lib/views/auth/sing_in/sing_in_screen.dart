@@ -1,3 +1,4 @@
+import 'package:cargo_app/main/main.dart';
 import 'package:cargo_app/views/auth/sing_up/sing_up_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -87,13 +88,13 @@ class _SingInScreenState extends State<SingInScreen> {
         Container(
           width: 303.w,
           child: RichText(
-            text: new TextSpan(
+            text: TextSpan(
               children: [
-                new TextSpan(
+                 TextSpan(
                   text: 'Согласен ',
                   style: AppTextStyles.black16Medium,
                 ),
-                new TextSpan(
+                TextSpan(
                   text: 'правилами',
                   style: AppTextStyles.black16SemiboldUnderline,
                   recognizer: TapGestureRecognizer()
@@ -102,11 +103,11 @@ class _SingInScreenState extends State<SingInScreen> {
                           'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
                     },
                 ),
-                new TextSpan(
+                TextSpan(
                   text: ' сайта и ',
                   style: AppTextStyles.black16Medium,
                 ),
-                new TextSpan(
+                TextSpan(
                   text: 'политикой',
                   style: AppTextStyles.black16SemiboldUnderline,
                   recognizer: TapGestureRecognizer()
@@ -115,10 +116,10 @@ class _SingInScreenState extends State<SingInScreen> {
                           'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
                     },
                 ),
-                new TextSpan(
+                 TextSpan(
                   text: ' '
                 ),
-                new TextSpan(
+                TextSpan(
                   text: 'конфиденциальности',
                   style: AppTextStyles.black16SemiboldUnderline,
                   recognizer: TapGestureRecognizer()
@@ -222,6 +223,12 @@ class _SingInScreenState extends State<SingInScreen> {
               SizedBox(height: 48.h),
               ElevatedButton(
                 onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Main(),
+                    ),
+                  );
 
                 },
                 child: Text(

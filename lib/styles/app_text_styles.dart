@@ -72,4 +72,18 @@ class AppTextStyles {
     color: AppColors.blackGrey,
   );
 
+
+  static TextStyle hometext = TextStyle(
+    fontSize: 16.sp,
+    fontFamily: 'SF Pro Display',
+    fontWeight: FontWeight.w500,
+    color: AppColors.hintColor,
+  );
+  static TextStyle textbottom= TextStyle(
+    fontSize: 16.sp,
+    fontFamily: 'SF Pro Display',
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
+
 }
