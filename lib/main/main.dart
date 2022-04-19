@@ -73,8 +73,10 @@ class _MainState extends State<Main> {
                 ),
                   label: 'Пункты SP'
                 ),
-                BottomNavigationBarItem(icon: Icon(
-                  Icons.subdirectory_arrow_left_rounded,
+                BottomNavigationBarItem(
+
+                  icon: Icon(
+                  Icons.play_arrow_outlined,
                   color: index == 2
                       ? Colors.blue
                       : Colors.black,
