@@ -87,4 +87,16 @@ class AppTextStyles {
     color: AppColors.white,
   );
 
+  static TextStyle profitext= TextStyle(
+    fontSize: 16.sp,
+    fontFamily: 'SF Pro Display',
+    fontWeight: FontWeight.w600,
+    color: AppColors.black,
+  );
+  static TextStyle profile = TextStyle(
+     fontWeight: FontWeight.w600,
+     fontFamily: 'SF Pro Display',
+     fontSize: 16,
+     color: Colors.black,);
+
 }

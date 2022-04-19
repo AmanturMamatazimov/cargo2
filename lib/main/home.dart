@@ -132,14 +132,14 @@ Text('40 000руб',style: AppTextStyles.textbottom)
                         ],
                       ),
                     ),
-                  )
+                  ),
 
                 ],
               ),
 
               Center(
                 child: Image.asset('assets/car.png',height: 300,width: 300,),
-              )
+              ),
 
             ],
           ),

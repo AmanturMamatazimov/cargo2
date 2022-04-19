@@ -1,4 +1,4 @@
-import 'package:cargo_app/main/menu_page.dart';
+ import 'package:cargo_app/main/menu_page.dart';
 import 'package:cargo_app/main/my_orders.dart';
 import 'package:cargo_app/main/sppage.dart';
 import 'package:cargo_app/main/home.dart';
@@ -90,9 +90,6 @@ class _MainState extends State<Main> {
                 ),
                     label: 'Меню'
                 ),
-
-
-
 
               ],
 
