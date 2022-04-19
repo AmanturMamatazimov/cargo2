@@ -12,25 +12,31 @@ class SPPage extends StatefulWidget {
 class _SPPageState extends State<SPPage> {
 
 
-  late CameraPosition _initialCameraPosition;
+  // late CameraPosition _initialCameraPosition;
+  //
+  // late TextEditingController whereController;
+  // late TextEditingController selectController;
+  // int select = 0;
+  //
+  // @override
+  // void initState() {
+  //   whereController = TextEditingController();
+  //   selectController = TextEditingController();
+  //   _initialCameraPosition = const CameraPosition(
+  //     target: LatLng(42.882004, 74.582748),
+  //     zoom: 11.5,
+  //   );
+  //   super.initState();
+  // }
 
-  late TextEditingController whereController;
-  late TextEditingController selectController;
-  int select = 0;
-
-  @override
-  void initState() {
-    whereController = TextEditingController();
-    selectController = TextEditingController();
-    _initialCameraPosition = const CameraPosition(
-      target: LatLng(42.882004, 74.582748),
-      zoom: 11.5,
-    );
-    super.initState();
-  }
+  static const _initialCameraPosition = CameraPosition(
+      target:  LatLng(42.882004, 74.582748),  zoom: 11.5,);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Пункты SP'),
+      ),
      body: Column(
        children: [
          SizedBox(
