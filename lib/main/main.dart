@@ -3,6 +3,7 @@ import 'package:cargo_app/main/my_orders.dart';
 import 'package:cargo_app/main/sppage.dart';
 import 'package:cargo_app/main/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Main extends StatefulWidget {
   const Main({Key? key}) : super(key: key);
@@ -75,14 +76,17 @@ class _MainState extends State<Main> {
                 ),
                 BottomNavigationBarItem(
 
-                  icon: Icon(
-                  Icons.play_arrow_outlined,
+                  // icon: Icon(
+                  // Icons.play_arrow_outlined,
+                  icon: SvgPicture.asset(
+                    'assets/icons/send.svg',
+
                   color: index == 2
                       ? Colors.blue
-                      : Colors.black,
-                ),
-                    label: 'Мои заказы'
-                ),
+                      : Colors.black,  ),
+
+                    label: 'Мои заказы'  ),
+
 
                 BottomNavigationBarItem(icon: Icon(
                   Icons.home_outlined,

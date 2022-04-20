@@ -13,6 +13,7 @@ import 'package:cargo_app/menu/see_package.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MenuPage extends StatefulWidget {
@@ -68,7 +69,7 @@ class _MenuPageState extends State<MenuPage> {
                   height: 50,
                   child: Row(
                     children: [
-                      Icon(Icons.person_outline_sharp,size: 30,color: Colors.blue,),
+                     Icon(Icons.person_outline,color: Colors.blue,),
                       Text('Мой профиль',style: AppTextStyles.profile ,)
                     ],
                   ),
@@ -131,7 +132,11 @@ class _MenuPageState extends State<MenuPage> {
                   height: 50,
                   child: Row(
                     children: [
-                      Icon(Icons.play_arrow_outlined,size: 30,color: Colors.blue,),
+
+                      SvgPicture.asset(
+                        'assets/icons/send.svg',
+                        color: Colors.blue,
+                      ),
                       Text('Мои заказы',style: AppTextStyles.profile ,)
                     ],
                   ),
@@ -153,7 +158,11 @@ class _MenuPageState extends State<MenuPage> {
                   height: 50,
                   child: Row(
                     children: [
-                      Icon(Icons.question_mark_outlined,size: 30,color: Colors.blue,),
+                      // SvgPicture.asset(
+                      //   'assets/icons/quest.svg',
+                      //   color: Colors.blue,
+                      // ),
+                      Icon(Icons.question_mark_outlined,color: Colors.blue,),
                       Text('Вопрос / Ответ',style: AppTextStyles.profile ,)
                     ],
                   ),
@@ -175,7 +184,10 @@ class _MenuPageState extends State<MenuPage> {
                   height: 50,
                   child: Row(
                     children: [
-                      Icon(FontAwesomeIcons.exclamation,size: 30,color: Colors.blue,),
+                      SvgPicture.asset(
+                        'assets/icons/alert.svg',
+                        color: Colors.blue,
+                      ),
                       Text('О компании',style: AppTextStyles.profile ,)
                     ],
                   ),
@@ -196,7 +208,11 @@ class _MenuPageState extends State<MenuPage> {
                   height: 50,
                   child: Row(
                     children: [
-                      Icon(Icons.shield_outlined,size: 30,color: Colors.blue,),
+                      // SvgPicture.asset(
+                      //   'assets/icons/key.svg',
+                      //
+                      // ),
+                      Icon(Icons.shield_outlined,color: Colors.blue),
                       Text('Политика конфиденциальности',style: AppTextStyles.profile ,)
                     ],
                   ),
@@ -218,7 +234,11 @@ class _MenuPageState extends State<MenuPage> {
                   height: 50,
                   child: Row(
                     children: [
-                      Icon(Icons.sensor_door_outlined,size: 30,color: Colors.blue,),
+                    //   SvgPicture.asset(
+                    // 'assets/icons/frame.svg',
+                    // color: Colors.blue,
+                    //   ),
+                      Icon(Icons.door_back_door_outlined,color: Colors.blue),
                       Text('Выйти',style: AppTextStyles.profile ,)
                     ],
                   ),
