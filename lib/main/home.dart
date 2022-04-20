@@ -1,3 +1,4 @@
+import 'package:cargo_app/if/if_incorect.dart';
 import 'package:cargo_app/pain/duty.dart';
 import 'package:cargo_app/pain/paid.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,7 +41,16 @@ class _HomeState extends State<Home> {
                   InputDecoration(
                     hintText: "Номер заказа",
                       border: InputBorder.none,
-                    suffixIcon: Icon(Icons.search)
+                    suffixIcon: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const IfIncorrect(),
+                          ),
+                        );
+                      },
+                        child: Icon(Icons.search))
                   ),
 
                 ),

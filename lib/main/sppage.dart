@@ -37,19 +37,21 @@ class _SPPageState extends State<SPPage> {
       appBar: AppBar(
         title: Text('Пункты SP'),
       ),
-     body: Column(
-       children: [
-         SizedBox(
-           height: 350,
-           width: 450,
-           child: GoogleMap(
-             myLocationEnabled: false,
-             zoomControlsEnabled: false,
-             initialCameraPosition: _initialCameraPosition,
+     body: Center(
+       child: Column(
+         children: [
+           SizedBox(
+             height: 511,
+             width: 400,
+             child: GoogleMap(
+               myLocationEnabled: false,
+               zoomControlsEnabled: false,
+               initialCameraPosition: _initialCameraPosition,
+             ),
            ),
-         ),
 
-       ],
+         ],
+       ),
      ),
     );
   }

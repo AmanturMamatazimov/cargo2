@@ -59,6 +59,7 @@ dependencies:
   latlong2: any
   location: any
   auto_route: ^3.2.4
+  getwidget: ^2.0.5
 
 dev_dependencies:
   flutter_test:

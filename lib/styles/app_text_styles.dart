@@ -99,4 +99,10 @@ class AppTextStyles {
      fontSize: 16,
      color: Colors.black,);
 
+  static TextStyle about = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontFamily: 'SF Pro Display',
+    fontSize: 20,
+    color: Colors.black,);
+
 }

@@ -1,5 +1,7 @@
 
+import 'package:cargo_app/main/home.dart';
 import 'package:cargo_app/main/my_orders.dart';
+import 'package:cargo_app/main/sppage.dart';
 import 'package:cargo_app/menu/about_company.dart';
 import 'package:cargo_app/menu/exit.dart';
 import 'package:cargo_app/menu/guation_answer.dart';
@@ -78,7 +80,7 @@ class _MenuPageState extends State<MenuPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SeePackage(),
+                      builder: (context) => const Home(),
                     ),
                   );
                 },
@@ -99,7 +101,7 @@ class _MenuPageState extends State<MenuPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Location(),
+                      builder: (context) => const SPPage(),
                     ),
                   );
                 },
@@ -120,7 +122,7 @@ class _MenuPageState extends State<MenuPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MyOrder(),
+                      builder: (context) => const MyOrders(),
                     ),
                   );
                 },
