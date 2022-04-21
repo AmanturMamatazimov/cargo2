@@ -1,3 +1,4 @@
+import 'package:cargo_app/my_orders/my_orders.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,7 +34,15 @@ class _MyOrdersState extends State<MyOrders> {
               ),
               SizedBox(height: 64.h,),
               GestureDetector(
-                onTap: (){},
+                onTap: (){
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Myorder(),
+                      )
+                  );
+                },
                 child: Container(
                   width: 343,
                   height: 50,

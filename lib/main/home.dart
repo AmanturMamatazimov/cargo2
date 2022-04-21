@@ -15,6 +15,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  TextEditingController? _textEditingController = TextEditingController();
+  List<String> dataList = [
+    'afafs',
+    'dafsda',
+    'dadsfa',
+    'dsafasf'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +36,7 @@ class _HomeState extends State<Home> {
      mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
@@ -36,6 +44,12 @@ class _HomeState extends State<Home> {
                   color: Color(0xffF4F4F4),
                 ),
                 child: TextFormField(
+                  onChanged: (value){
+                    setState(() {
+                      dataList = dataList.where((element) => element.contains(value)).toList();
+                    });
+                  },
+                  controller: _textEditingController,
                   autofocus: false,
                   decoration:
                   InputDecoration(
@@ -107,6 +121,8 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 16,),
+
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
