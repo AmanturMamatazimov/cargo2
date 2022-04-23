@@ -204,7 +204,7 @@ class _HomeState extends State<Home> {
 
             Container(
               width: 343,
-              height: 50,
+              height: 80,
               child: Form(
                   key: _dropdownFormKey,
                   child: Column(
