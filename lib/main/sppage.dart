@@ -39,7 +39,7 @@ class _SPPageState extends State<SPPage> {
       ),
      body: Center(
        child: Column(
-         children: [
+         children: const [
            SizedBox(
              height: 511,
              width: 400,

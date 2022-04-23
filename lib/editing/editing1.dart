@@ -29,6 +29,40 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  /// Which holds the selected date
+  /// Defaults to today's date.
+  DateTime selectedDate = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+
+  late String valueChoose;
+  List listItem = [
+    'fsfdsfds', 'sdfsgfdgsfd','sfsf'
+  ];
+
+  String? selectedValue = null;
+  final _dropdownFormKey = GlobalKey<FormState>();
+
+
+  List<DropdownMenuItem<String>> get dropdownItems{
+    List<DropdownMenuItem<String>> menuItems = [
+      DropdownMenuItem(child: Text("Женский"),value: "Женский"),
+      DropdownMenuItem(child: Text("Мужской"),value: "Мужской"),
+
+    ];
+    return menuItems;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +73,7 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 32),
                 Text('Имя'),
                 Container(
                   width: 343,
@@ -47,7 +82,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10),
                       color:Color(0xffF3F3F3 )
                   ),
-                  child: TextField(
+                  child: const TextField(
                     autofocus: false,
                     decoration:
                     InputDecoration(
@@ -68,7 +103,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10),
                       color:Color(0xffF3F3F3 )
                   ),
-                  child: TextField(
+                  child: const TextField(
                     autofocus: false,
                     decoration:
                     InputDecoration(
@@ -89,7 +124,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10),
                       color:Color(0xffF3F3F3 )
                   ),
-                  child: TextField(
+                  child: const TextField(
                     autofocus: false,
                     decoration:
                     InputDecoration(
@@ -109,7 +144,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10),
                       color:Color(0xffF3F3F3 )
                   ),
-                  child: TextField(
+                  child: const TextField(
                     autofocus: false,
                     decoration:
                     InputDecoration(
@@ -125,66 +160,87 @@ class _HomeState extends State<Home> {
 
 
                 SizedBox(height: 15,),
-                Text('Дата рождения'),
 
 
 
 
 
-                Container(
-                  width: 343,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color:Color(0xffF3F3F3 )
-                  ),
-                  child: TextField(
-                    autofocus: false,
-                    decoration:
-                    InputDecoration(
-                      hintText: "23.06.2001",
-                      // border: InputBorder.none,
+
+
+                Text('Дата рождения') ,
+
+
+
+
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    GestureDetector(
+                      onTap: () => _selectDate(context),
+                      child: Container(
+                        width: 343,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color:Color(0xffF3F3F3 )
+                        ),
+                        child: Center(
+                          child: Text(
+                            "${selectedDate.toLocal()}".split(' ')[0],
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      )
 
                     ),
 
-                  ),
-                ),
 
 
 
 
-                SizedBox(height: 15,),
-                Text('Пол'),
-                Container(
-                  width: 343,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color:Color(0xffF3F3F3 )
-                  ),
-                  child: TextField(
-                    autofocus: false,
-                    decoration:
-                    InputDecoration(
-                      hintText: "Женский",
-                      suffixIcon: Icon(Icons.keyboard_arrow_down_sharp),
+
+                const SizedBox(height: 15,),
+                const Text('Пол'),
+
+            Container(
+              width: 343,
+              height: 50,
+              child: Form(
+                  key: _dropdownFormKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xffF3F3F3 ), width: 1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xffF3F3F3 ), width: 1),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            filled: true,
+                            fillColor:Color(0xffF3F3F3 ),
+                          ),
+                          validator: (value) => value == null ? "Select a country" : null,
+                          dropdownColor: Color(0xffF3F3F3 ),
+                          value: selectedValue,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedValue = newValue!;
+                            });
+                          },
+                          items: dropdownItems),
+                    ],
+                  )),
+            ),
 
 
-
-
-                    ),
-
-                  ),
-                ),
                 SizedBox(height: 15,),
                 GestureDetector(
                   onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Calendar(),
-                        )
-                    );
+
                   },
 
                   child: Container(
@@ -205,6 +261,7 @@ class _HomeState extends State<Home> {
 
             ),
           ),
+
         )
 
     );

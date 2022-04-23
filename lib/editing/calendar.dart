@@ -1,53 +1,72 @@
+
+
 import 'package:flutter/material.dart';
 
-class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
-
-  @override
-  State<Calendar> createState() => _CalendarState();
+void main() {
+  runApp(MyApp());
 }
 
-class _CalendarState extends State<Calendar> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FLutter App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: Home(),
+      title: 'Flutter Demo',
+      theme: ThemeData(primarySwatch: Colors.blue, brightness: Brightness.dark),
+      home: DatePickerDemo(),
     );
   }
 }
 
-class Home extends StatelessWidget {
- late DateTime _dateTime;
+
+class DatePickerDemo extends StatefulWidget {
+  @override
+  _DatePickerDemoState createState() => _DatePickerDemoState();
+}
+
+class _DatePickerDemoState extends State<DatePickerDemo> {
+  /// Which holds the selected date
+  /// Defaults to today's date.
+  DateTime selectedDate = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children:<Widget> [
-          Text(_dateTime == null ? 'Nothing has been '  : _dateTime.toString()),
-          RaisedButton(
-            child: Text('Pick a date'),
-              onPressed: (){
-               showDatePicker(
-                   context: context,
-                   initialDate: DateTime.now(),
-                   firstDate:DateTime (2001),
-                   lastDate: DateTime(2022)
-               ).then((date) {
-                setState(() {
-                  _dateTime = date!;
-                });
-               });
-          }),
-
-        ],
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              "${selectedDate.toLocal()}".split(' ')[0],
+              style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            RaisedButton(
+              onPressed: () => _selectDate(context),
+              child: Text(
+                'Select date',
+                style:
+                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+              color: Colors.greenAccent,
+            ),
+          ],
+        ),
       ),
     );
   }
-
-  void setState(Null Function() param0) {}
 }
