@@ -1,7 +1,9 @@
 import 'package:cargo_app/editing/editing.dart';
+import 'package:cargo_app/styles/app_colors.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -17,136 +19,110 @@ class _MyProfileState extends State<MyProfile> {
         appBar: AppBar(
         title: Text('Профиль'),
         ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 32),
         child: Column(
            children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 128, right: 127, top: 26),
-              child: SizedBox(
-                height: 120,
-                width: 120,
-                child: Image.asset('assets/marina.png'),
-
-              ),
-            ),
-             SizedBox(height: 49,),
              Container(
-               width: 343,
-               height: 54,
-               child: Row(
-                 children: [
-                   Icon(Icons.person_outline_sharp,
-                   size: 30, color: Colors.blue,),
-                   SizedBox(width: 20,),
-                   Text('Марина Ивановна', style: AppTextStyles.profile,),
-
-                 ],
-
+               width: 120.w,
+               height: 120.h,
+               decoration: BoxDecoration(
+                 shape: BoxShape.circle,
+                 image: DecorationImage(
+                   fit: BoxFit.cover,
+                   image: AssetImage('assets/marina.png'),
+                 )
                ),
              ),
-             const Divider(
-               color: Colors.black,
-               indent: 20,
-               endIndent: 20,
-               thickness: 0.5,
-               height: 10,
+             SizedBox(height: 32.h),
+             Container(
+               padding: EdgeInsets.symmetric(vertical: 15),
+               child: Row(
+                 children: [
+                   Icon(Icons.person_outline_sharp,color: AppColors.mainColor,),
+                   SizedBox(width: 20.w),
+                   Text('Марина Ивановна', style: AppTextStyles.profile,),
+                 ],
+               ),
              ),
-      Container(
-        width: 343,
-        height: 54,
+             Divider(
+               height: 1.h,
+               color: Colors.black,
+             ),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 15),
             child:  Row(
                children: [
-                 Icon(Icons.phone,
-                   size: 30, color: Colors.blue,),
-                 SizedBox(width: 20,),
+                 Icon(Icons.phone, color: AppColors.mainColor,),
+                 SizedBox(width: 20.w),
                  Text('+996 705 779 778', style: AppTextStyles.profile,),
                ],
               ),),
              Divider(
+               height: 1.h,
                color: Colors.black,
-               indent: 20,
-               endIndent: 20,
-               thickness: 0.5,
-               height: 10,
              ),
 
              Container(
-               width: 343,
-               height: 54,
+               padding: EdgeInsets.symmetric(vertical: 15),
                child:  Row(
                  children: [
-                   Icon(Icons.location_on_outlined,
-                     size: 30, color: Colors.blue,),
-                   SizedBox(width: 20,),
+                   Icon(Icons.location_on_outlined,color: AppColors.mainColor,),
+                   SizedBox(width: 20.w,),
                    Text('Кыргызстан, Бишкек', style: AppTextStyles.profile,),
                  ],
                ),),
-             const Divider(
+             Divider(
+               height: 1.h,
                color: Colors.black,
-               indent: 20,
-               endIndent: 20,
-               thickness: 0.5,
-               height: 10,
              ),
 
 
              Container(
-               width: 343,
-               height: 54,
+               padding: EdgeInsets.symmetric(vertical: 15),
                child:  Row(
                  children: [
-                   Icon(Icons.calendar_month,
-                     size: 30, color: Colors.blue,),
-                   SizedBox(width: 20,),
+                   Icon(Icons.calendar_month,color: Colors.blue),
+                   SizedBox(width: 20.w),
                    Text('23-09-1995', style: AppTextStyles.profile,),
                  ],
                ),),
              Divider(
+               height: 1.h,
                color: Colors.black,
-               indent: 20,
-               endIndent: 20,
-               thickness: 0.5,
-               height: 10,
              ),
              Container(
-               width: 343,
-               height: 54,
+               padding: EdgeInsets.symmetric(vertical: 15),
                child:  Row(
                  children: [
-                   Icon(Icons.transgender_rounded,
-                     size: 30, color: Colors.blue,),
-                   SizedBox(width: 20,),
+                   Icon(Icons.transgender_rounded,color: Colors.blue),
+                   SizedBox(width: 20.w),
                    Text('Жен', style: AppTextStyles.profile,),
                  ],
                ),),
              Divider(
+               height: 1.h,
                color: Colors.black,
-               indent: 20,
-               endIndent: 20,
-               thickness: 0.5,
-               height: 10,
              ),
-
+  SizedBox(height: 86.h),
   GestureDetector(
     onTap: (){
-      Navigator.push(
+        Navigator.push(
           context,
           MaterialPageRoute(
           builder: (context) => const Editing(),
-      )
-      );
+        )
+        );
     },
     child: Container(
-      width: 343,
-      height: 50,
-      decoration: BoxDecoration(
+      padding: EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.blue
-      ),
-      child: Center(
+        color: AppColors.mainColor
+        ),
+        child: Center(
         child: Text('Редактировать', style: AppTextStyles.textbottom,),
-      ),
+        ),
     ),
 
   )

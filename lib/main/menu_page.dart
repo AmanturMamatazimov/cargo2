@@ -11,6 +11,7 @@ import 'package:cargo_app/menu/my_profil.dart';
 import 'package:cargo_app/menu/safity.dart';
 import 'package:cargo_app/menu/see_package.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,224 +30,220 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 76, left: 16, right: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: [
+        padding: const EdgeInsets.only(top: 76, left: 16, right: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              children: [
+                Container(
+                  width: 80.w,
+                  height: 80.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage('assets/marina.png'),
+                      fit: BoxFit.cover
+                    )
+                  ),
+                ),
+                SizedBox(width: 8.w),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Марина Иванова',style: AppTextStyles.black16SemiBold),
+                    SizedBox(height: 8.h),
+                    Text('+996 705 779 778',style: AppTextStyles.black12Medium,)
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 16.h),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyProfile(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                   Icon(Icons.person_outline,color: Colors.blue),
+                    SizedBox(width: 20.w),
+                    Text('Мой профиль',style: AppTextStyles.profile)
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Home(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                    Icon(Icons.search,color: Colors.blue),
+                    SizedBox(width: 20.w),
+                    Text('Отследить отправления',style: AppTextStyles.profile)
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SPPage(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                    Icon(Icons.location_on_outlined,color: Colors.blue,),
+                    SizedBox(width: 20.w),
+                    Text('Пункты Sapat Cargo',style: AppTextStyles.profile ,)
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyOrders(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
 
-                  SizedBox(
-                    width: 80,
-                    height: 80,
-                    child: Image.asset('assets/marina.png'),
-                  ),
-                  SizedBox(width: 8,),
-                  Column(
-                    children: const [
-                      Text('Марина Иванова',style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Colors.black,)),
-                      Text('+996 705 779 778')
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyProfile(),
+                    SvgPicture.asset(
+                      'assets/icons/send.svg',
+                      color: Colors.blue,
                     ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                     Icon(Icons.person_outline,color: Colors.blue,),
-                      Text('Мой профиль',style: AppTextStyles.profile ,)
-                    ],
-                  ),
+                    SizedBox(width: 20.w),
+                    Text('Мои заказы',style: AppTextStyles.profile ,)
+                  ],
                 ),
               ),
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Home(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                      Icon(Icons.search,size: 30,color: Colors.blue,),
-                      Text('Отследить отправления',style: AppTextStyles.profile ,)
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SPPage(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                      Icon(Icons.location_on_outlined,size: 30,color: Colors.blue,),
-                      Text('Пункты Sapat Cargo',style: AppTextStyles.profile ,)
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyOrders(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
+            ),
 
-                      SvgPicture.asset(
-                        'assets/icons/send.svg',
-                        color: Colors.blue,
-                      ),
-                      Text('Мои заказы',style: AppTextStyles.profile ,)
-                    ],
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QuestionAnswer(),
                   ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                    // SvgPicture.asset(
+                    //   'assets/icons/quest.svg',
+                    //   color: Colors.blue,
+                    // ),
+                    Icon(Icons.question_mark_outlined,color: Colors.blue),
+                    SizedBox(width: 20.w),
+                    Text('Вопрос / Ответ',style: AppTextStyles.profile)
+                  ],
                 ),
               ),
+            ),
 
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const QuestionAnswer(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                      // SvgPicture.asset(
-                      //   'assets/icons/quest.svg',
-                      //   color: Colors.blue,
-                      // ),
-                      Icon(Icons.question_mark_outlined,color: Colors.blue,),
-                      Text('Вопрос / Ответ',style: AppTextStyles.profile ,)
-                    ],
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutCompany(),
                   ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/alert.svg',
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 20.w),
+                    Text('О компании',style: AppTextStyles.profile ,)
+                  ],
                 ),
               ),
+            ),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Safety(),
+                  ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                    // SvgPicture.asset(
+                    //   'assets/icons/key.svg',
+                    //
+                    // ),
+                    Icon(Icons.shield_outlined,color: Colors.blue),
+                    SizedBox(width: 20.w),
+                    Text('Политика конфиденциальности',style: AppTextStyles.profile ,)
+                  ],
+                ),
+              ),
+            ),
 
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AboutCompany(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/alert.svg',
-                        color: Colors.blue,
-                      ),
-                      Text('О компании',style: AppTextStyles.profile ,)
-                    ],
+            SizedBox(height: 6.h),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Exit(),
                   ),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                  //   SvgPicture.asset(
+                  // 'assets/icons/frame.svg',
+                  // color: Colors.blue,
+                  //   ),
+                    Icon(Icons.door_back_door_outlined,color: Colors.blue),
+                    SizedBox(width: 20.w),
+                    Text('Выйти',style: AppTextStyles.profile ,)
+                  ],
                 ),
               ),
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Safety(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                      // SvgPicture.asset(
-                      //   'assets/icons/key.svg',
-                      //
-                      // ),
-                      Icon(Icons.shield_outlined,color: Colors.blue),
-                      Text('Политика конфиденциальности',style: AppTextStyles.profile ,)
-                    ],
-                  ),
-                ),
-              ),
+            ),
 
-              SizedBox(height: 6.h,),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Exit(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  child: Row(
-                    children: [
-                    //   SvgPicture.asset(
-                    // 'assets/icons/frame.svg',
-                    // color: Colors.blue,
-                    //   ),
-                      Icon(Icons.door_back_door_outlined,color: Colors.blue),
-                      Text('Выйти',style: AppTextStyles.profile ,)
-                    ],
-                  ),
-                ),
-              ),
-
-            ],
-          ),
+          ],
         ),
       ) ,
     );

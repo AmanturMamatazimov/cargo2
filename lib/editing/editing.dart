@@ -1,5 +1,6 @@
 import 'package:cargo_app/editing/editing1.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class Editing extends StatefulWidget {
@@ -26,35 +27,33 @@ class _EditingState extends State<Editing> {
              children: [
                TextButton(
                    onPressed: (){
-                     Navigator.push(
-                       context,
-                       MaterialPageRoute(
-                         builder: (context) => const Editing1(),
-                       ),
-                     );
+                     Navigator.pushReplacement(
+                         context, MaterialPageRoute(builder: (BuildContext context) => Editing1()));
                    },
                    child: Text('Изменить фотографию',style: TextStyle(color: Colors.black))),
-               const Divider(
+               Divider(
                  color: Colors.black,
                  indent: 10,
                  endIndent: 10,
                  thickness: 0.5,
-                 height: 5,
+                 height: 5.h,
                ),
 
                TextButton(
                    onPressed: (){},
                    child: Text('Удалить фотографию', style: TextStyle(color: Colors.red),)),
-               const Divider(
+               Divider(
                  color: Colors.black,
                  indent: 10,
                  endIndent: 10,
                  thickness: 0.5,
-                 height: 5,
+                 height: 5.h,
                ),
 
                TextButton(
-                   onPressed: (){},
+                   onPressed: (){
+                     Navigator.pop(context);
+                   },
                    child: Text('Отмена', style: TextStyle(color: Colors.black),))
 
 

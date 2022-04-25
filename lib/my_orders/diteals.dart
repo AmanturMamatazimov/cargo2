@@ -1,4 +1,8 @@
+import 'package:cargo_app/styles/app_colors.dart';
+import 'package:cargo_app/styles/app_text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Diteals extends StatefulWidget {
@@ -16,10 +20,9 @@ class _DitealsState extends State<Diteals> {
         title: Text('Мои заказы'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 32, left: 16, right: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 32),
         child: Container(
-          width: 343,
-          height: 525,
+          padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Color(0xffF3F3F3)
@@ -27,59 +30,62 @@ class _DitealsState extends State<Diteals> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 19, left: 17),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/build.svg',
-                      color: Colors.blue,
-                    ),
-                    Text('23.03.22-25.03.22'),
-                    SizedBox(width: 90,),
-                    Text('№ ЛК-131',style: TextStyle(color: Colors.blue, fontSize: 16),),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/build.svg',
+                        color: AppColors.mainColor,
+                      ),
+                      SizedBox(width: 5.w),
+                      Text('23.03.22-25.03.22',style: AppTextStyles.blackGrey10Regular),
+                    ],
+                  ),
+                  Text('№ ЛК-131',style: AppTextStyles.blue16Medium),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 11,left: 16),
-                child: Text('SU 601 Москва - Бишкек',style: TextStyle(fontSize: 16),),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 140,
-                      height: 40,
+              SizedBox(height: 10.h),
+              Text('SU 601 Москва - Бишкек',style: AppTextStyles.black16Medium),
+              SizedBox(height: 16.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Color(0xffEAEAEA)
                       ),
                       child: Center(
                         child: Text(
-                          'Данные заказа'
+                          'Данные заказа',
+                          style: AppTextStyles.black14Medium,
                         ),
                       ),
                     ),
-
-                    Container(
-                      width: 140,
-                      height: 40,
+                  ),
+                  SizedBox(width: 31.w),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Color(0xff0E77EF)
                       ),
                       child: Center(
                         child: Text(
-                            'Данные об активе'
+                            'Данные об активе',
+                          style: AppTextStyles.white14Medium,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               )
             ],
           ),

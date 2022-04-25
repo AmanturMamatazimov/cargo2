@@ -14,49 +14,45 @@ class MyOrders extends StatefulWidget {
 
 class _MyOrdersState extends State<MyOrders> {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Мои заказы'),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 70.h,),
-              Text('У вас еще нет заказов'),
-              SizedBox(height: 54.h,),
-              Container(
-                width: 300,
-                height: 300,
-                child:Image.asset('assets/girl.png'),
-              ),
-              SizedBox(height: 64.h,),
-              GestureDetector(
-                onTap: (){
-
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Myorder(),
-                      )
-                  );
-                },
-                child: Container(
-                  width: 343,
-                  height: 50,
-                  decoration: BoxDecoration(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SizedBox(),
+            Text(
+              'У вас еще нет заказов',
+              style: AppTextStyles.blackGrey16Regular,
+            ),
+            Image.asset(
+              'assets/girl.png',
+              width: 300.w,
+              height: 300.h,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Myorder(),
+                    ));
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: AppColors.mainColor
-                  ),
-                  child: Center(
-                    child: Text('Заказать',style: AppTextStyles. textbottom),
-                  ),
+                    color: AppColors.mainColor),
+                child: Center(
+                  child: Text('Заказать', style: AppTextStyles.textbottom),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

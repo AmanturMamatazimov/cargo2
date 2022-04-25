@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../styles/app_text_styles.dart';
 import '../../../utils/strings.dart';
+import '../password/password_screen.dart';
 
 class SingInScreen extends StatefulWidget {
   const SingInScreen({Key? key}) : super(key: key);
@@ -146,6 +147,12 @@ class _SingInScreenState extends State<SingInScreen> {
               style: AppTextStyles.mainColor16SemiBold,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PasswordScreen(),
+                    ),
+                  );
                 },
             ),
 
