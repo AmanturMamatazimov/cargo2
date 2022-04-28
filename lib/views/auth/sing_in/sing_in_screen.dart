@@ -198,57 +198,60 @@ class _SingInScreenState extends State<SingInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 60.h),
-              Text(
-                'Вход',
-                style: AppTextStyles.kRobotoReg40ColorBlack600,
-              ),
-              SizedBox(height: 40.h),
-              Text(
-                Strings.phoneNumber,
-                style: AppTextStyles.kRobotoReg12ColorBlack500,
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              phoneField(),
-              SizedBox(height: 24.h),
-              Text(
-                Strings.password,
-                style: AppTextStyles.kRobotoReg12ColorBlack500,
-              ),
-              SizedBox(height: 4.h),
-              passwordField(),
-              SizedBox(height: 24.h),
-              politikConf(),
-              SizedBox(height: 48.h),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Main(),
-                    ),
-                  );
-
-                },
-                child: Text(
-                  'Войти',
-                  style: AppTextStyles.white16Medium,
+      body: GestureDetector(
+        onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 60.h),
+                Text(
+                  'Вход',
+                  style: AppTextStyles.kRobotoReg40ColorBlack600,
                 ),
-              ),
-              SizedBox(height: 169.h),
-              forgotPassword(),
-              SizedBox(height: 24.h),
-              registration(),
-              SizedBox(height: 58.h),
-            ],
+                SizedBox(height: 40.h),
+                Text(
+                  Strings.phoneNumber,
+                  style: AppTextStyles.kRobotoReg12ColorBlack500,
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                phoneField(),
+                SizedBox(height: 24.h),
+                Text(
+                  Strings.password,
+                  style: AppTextStyles.kRobotoReg12ColorBlack500,
+                ),
+                SizedBox(height: 4.h),
+                passwordField(),
+                SizedBox(height: 24.h),
+                politikConf(),
+                SizedBox(height: 48.h),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Main(),
+                      ),
+                    );
+
+                  },
+                  child: Text(
+                    'Войти',
+                    style: AppTextStyles.white16Medium,
+                  ),
+                ),
+                SizedBox(height: 169.h),
+                forgotPassword(),
+                SizedBox(height: 24.h),
+                registration(),
+                SizedBox(height: 58.h),
+              ],
+            ),
           ),
         ),
       ),

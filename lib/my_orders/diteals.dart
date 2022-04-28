@@ -19,7 +19,7 @@ class _DitealsState extends State<Diteals> {
       appBar: AppBar(
         title: Text('Мои заказы'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 32),
         child: Container(
           padding: EdgeInsets.all(16),
@@ -85,6 +85,186 @@ class _DitealsState extends State<Diteals> {
                       ),
                     ),
                   ),
+                ],
+              ),
+              SizedBox(height: 18.h),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/frm1.svg',
+                              color: AppColors.blue,
+                            ),
+                            SizedBox(width: 4.w),
+                            Text('Сумма:',style: AppTextStyles.blackGrey12Regular),
+                            SizedBox(width: 4.w),
+                            Text('986 р.',style: AppTextStyles.black16Medium)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/frm3.svg',
+                              color: AppColors.blue,
+                            ),
+                            SizedBox(width: 4.w),
+                            Text('Способ оплаты:',style: AppTextStyles.blackGrey12Regular),
+                            SizedBox(width: 4.w),
+                            Text('В долг', style: TextStyle(color: AppColors.mainRed,fontSize: 16.sp),)
+                          ],
+                        ),
+                      ],
+                    ),
+                  SizedBox(height: 19.h),
+                  Row(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/frm2.svg',
+                              color: AppColors.blue,
+                            ),
+                            SizedBox(width: 4.w),
+                            Text('Оплачено:', style: TextStyle(color: AppColors.green,fontSize: 12.sp),),
+                            SizedBox(width: 4.w),
+                            Text('400 р.',style: AppTextStyles.black16Regular)
+                          ],
+                        ),
+                        SizedBox(width: 14.w),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/icons/frm4.svg',
+                              color: AppColors.blue,
+                            ),
+                            SizedBox(width: 4.w),
+                            Text('Остаток:',style: TextStyle(color: AppColors.mainRed,fontSize: 12.sp),),
+                            SizedBox(width: 4.w),
+                            Text('586 р.',style: AppTextStyles.black16Regular),
+                          ],
+                        ),
+                      ],
+                    ),
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/frm5.svg',
+                        color: AppColors.blue,
+                      ),
+                      SizedBox(width: 4.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Дата отправления',style: AppTextStyles.blackGrey12Regular),
+                          SizedBox(width: 4.w),
+                          Text('22.04.22',style: AppTextStyles.black16Regular),
+                        ],
+                      ),
+
+                    ],
+                  ),
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/frm6.svg',
+                        color: AppColors.blue,
+                      ),
+                      SizedBox(width: 4.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Дата доставки',style: AppTextStyles.blackGrey12Regular),
+                          Text('22.04.22',style: AppTextStyles.black16Regular)
+                        ],
+                      ),
+
+                    ],
+                  ),
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/frm7.svg',
+                        color: AppColors.blue,
+                      ),
+                      SizedBox(width: 4.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Отправитель',style: AppTextStyles.blackGrey12Regular),
+                          Text('Анна Смолинская',style: AppTextStyles.black16Regular),
+                        ],
+                      ),
+
+                    ],
+                  ),
+
+
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/frm8.svg',
+                        color: AppColors.blue,
+                      ),
+                      SizedBox(width: 4.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Получатель',style: AppTextStyles.blackGrey12Regular),
+                          Text('Марина Ивановна',style: AppTextStyles.black16Regular),
+                        ],
+                      ),
+
+                    ],
+                  ),
+
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/frm9.svg',
+                        color: AppColors.blue,
+                      ),
+                      SizedBox(width: 4.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Откуда',style: AppTextStyles.blackGrey12Regular),
+                          Text('Москва, ул Московская 120, кв 55',style: AppTextStyles.black16Regular),
+                        ],
+                      ),
+
+                    ],
+                  ),
+
+                  SizedBox(height: 19.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/frm10.svg',
+                        color: AppColors.blue,
+                      ),
+                      SizedBox(width: 4.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Куда',style: AppTextStyles.blackGrey12Regular),
+                          Container(width:283.w,child: Text('Офис Sapat cargo, г.Бишкек, Токольдош...',style: AppTextStyles.black16Regular))
+                        ],
+                      ),
+
+                    ],
+                  ),
+
                 ],
               )
             ],

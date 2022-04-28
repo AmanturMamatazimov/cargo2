@@ -28,6 +28,13 @@ class AppTextStyles {
     color: AppColors.mainBlack,
   );
 
+  static TextStyle black16Regular = TextStyle(
+    fontSize: 16.sp,
+    fontFamily: 'SF Pro Display',
+    fontWeight: FontWeight.w400,
+    color: AppColors.mainBlack,
+  );
+
   static TextStyle black16SemiBold = TextStyle(
     fontSize: 16.sp,
     fontFamily: 'SF Pro Display',
@@ -132,9 +139,9 @@ class AppTextStyles {
 
   static TextStyle blackGrey12Regular = TextStyle(
     fontSize: 12.sp,
-    fontFamily: 'Gilroy',
+    fontFamily: 'SF Pro Display',
     fontWeight: FontWeight.w400,
-    color: AppColors.blackGrey,
+    color: AppColors.hintColor,
   );
 
 

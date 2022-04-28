@@ -15,13 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  TextEditingController? _textEditingController = TextEditingController();
-  List<String> dataList = [
-    'afafs',
-    'dafsda',
-    'dadsfa',
-    'dsafasf'
-  ];
+  TextEditingController? textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,20 +35,21 @@ class _HomeState extends State<Home> {
               TextFormField(
                 onChanged: (value){
                   setState(() {
-                    dataList = dataList.where((element) => element.contains(value)).toList();
+
                   });
                 },
-                controller: _textEditingController,
+                controller: textEditingController,
                 autofocus: false,
                 decoration:
                 InputDecoration(
                   hintText: "Номер заказа",
                   suffixIcon: GestureDetector(
                     onTap: (){
+                      FocusScope.of(context).requestFocus(new FocusNode());
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const IfIncorrect(),
+                          builder: (context) => IfIncorrect(),
                         ),
                       );
                     },
@@ -61,15 +57,13 @@ class _HomeState extends State<Home> {
                 ),
 
               ),
-              SizedBox(height: 16,),
+              SizedBox(height: 16.h),
               Text(
-'''Номер накладной указан под штрих-кодом в
-сопроводительной накладной, которую Вы 
-получаете от курьера.''',
+'Номер накладной указан под штрих-кодом в сопроводительной накладной, которую Вы получаете от курьера.',
                 style: AppTextStyles.hometext,
               ),
 
-              SizedBox(height: 16.h,),
+              SizedBox(height: 16.h),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

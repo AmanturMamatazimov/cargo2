@@ -215,63 +215,66 @@ class _SingUpScreenState extends State<SingUpScreen> {
         elevation: 0,
         backgroundColor: AppColors.white,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Регистрация',
-                style: AppTextStyles.kRobotoReg40ColorBlack600,
-              ),
-              SizedBox(height: 40.h),
-              Text(
-                Strings.phoneNumber,
-                style: AppTextStyles.kRobotoReg12ColorBlack500,
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              phoneField(),
-              SizedBox(height: 24.h),
-              Text(
-                'Создайте пароль',
-                style: AppTextStyles.kRobotoReg12ColorBlack500,
-              ),
-              SizedBox(height: 4.h),
-              passwordField(),
-              SizedBox(height: 24.h),
-              Text(
-                "Повторите пароль",
-                style: AppTextStyles.kRobotoReg12ColorBlack500,
-              ),
-              SizedBox(height: 4.h),
-              confirmField(),
-              SizedBox(height: 24.h),
-              politikConf(),
-              SizedBox(height: 48.h),
-              ElevatedButton(
-                onPressed: () {
+      body: GestureDetector(
+        onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Регистрация',
+                  style: AppTextStyles.kRobotoReg40ColorBlack600,
+                ),
+                SizedBox(height: 40.h),
+                Text(
+                  Strings.phoneNumber,
+                  style: AppTextStyles.kRobotoReg12ColorBlack500,
+                ),
+                SizedBox(
+                  height: 4.h,
+                ),
+                phoneField(),
+                SizedBox(height: 24.h),
+                Text(
+                  'Создайте пароль',
+                  style: AppTextStyles.kRobotoReg12ColorBlack500,
+                ),
+                SizedBox(height: 4.h),
+                passwordField(),
+                SizedBox(height: 24.h),
+                Text(
+                  "Повторите пароль",
+                  style: AppTextStyles.kRobotoReg12ColorBlack500,
+                ),
+                SizedBox(height: 4.h),
+                confirmField(),
+                SizedBox(height: 24.h),
+                politikConf(),
+                SizedBox(height: 48.h),
+                ElevatedButton(
+                  onPressed: () {
 
-                },
-                style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                  padding: MaterialStateProperty.all(
-                    const EdgeInsets.symmetric(
-                      horizontal: 118,
-                      vertical: 15,
+                  },
+                  style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.symmetric(
+                        horizontal: 118,
+                        vertical: 15,
+                      ),
                     ),
                   ),
+                  child: Text(
+                    'Регистрация',
+                    style: AppTextStyles.white16Medium,
+                  ),
                 ),
-                child: Text(
-                  'Регистрация',
-                  style: AppTextStyles.white16Medium,
-                ),
-              ),
-              SizedBox(height: 110.h),
-              singIn(),
-              SizedBox(height: 58.h),
-            ],
+                SizedBox(height: 110.h),
+                singIn(),
+                SizedBox(height: 58.h),
+              ],
+            ),
           ),
         ),
       ),

@@ -30,7 +30,9 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[index],
+      body: GestureDetector(
+          onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
+          child: screens[index]),
 
 
       bottomNavigationBar: Padding(

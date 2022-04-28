@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../editing/editing1.dart';
+
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
 
@@ -110,7 +112,7 @@ class _MyProfileState extends State<MyProfile> {
         Navigator.push(
           context,
           MaterialPageRoute(
-          builder: (context) => const Editing(),
+          builder: (context) => const Editing1(),
         )
         );
     },

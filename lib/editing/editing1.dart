@@ -89,6 +89,7 @@ class _HomeState extends State<Home> {
               Text('Номер телефона', style: AppTextStyles.black12Medium),
               SizedBox(height: 4.h),
               TextField(
+                keyboardType: TextInputType.phone,
                 autofocus: false,
                 decoration: InputDecoration(
                   hintText: "+996 705 779 778",
