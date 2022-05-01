@@ -12,7 +12,6 @@ class AppColors {
   static const Color grey = Color(0xFFE0E0E0);
   static const Color redAppColor = Color(0xFFD31B1B);
 
-
   static const Color mainColor = Color(0xFF0E77EF);
   static const Color bgColor = Color(0xFFFFFFFF);
   static const Color customButton = Color(0xff0E77EF);
