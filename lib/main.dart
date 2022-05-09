@@ -6,9 +6,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 
 
-// void main() {
-//   runApp(Cargo());
-// }
+
 
 void main() {
   runApp(
