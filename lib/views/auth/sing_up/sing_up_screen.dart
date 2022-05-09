@@ -111,7 +111,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
         ),
         SizedBox(width: 10.w),
         Container(
-          width: 303.w,
+          width: MediaQuery.of(context).size.width * 0.7,
           child: RichText(
             text: new TextSpan(
               children: [
@@ -253,21 +253,23 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 SizedBox(height: 24.h),
                 politikConf(),
                 SizedBox(height: 48.h),
-                ElevatedButton(
-                  onPressed: () {
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
 
-                  },
-                  style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                    padding: MaterialStateProperty.all(
-                      const EdgeInsets.symmetric(
-                        horizontal: 118,
-                        vertical: 15,
+                    },
+                    style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(
+                          horizontal: 118,
+                          vertical: 15,
+                        ),
                       ),
                     ),
-                  ),
-                  child: Text(
-                    'Регистрация',
-                    style: AppTextStyles.white16Medium,
+                    child: Text(
+                      'Регистрация',
+                      style: AppTextStyles.white16Medium,
+                    ),
                   ),
                 ),
                 SizedBox(height: 110.h),

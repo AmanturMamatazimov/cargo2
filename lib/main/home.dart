@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
                     },
 
                     child: Container(
-                      width: 164.w,
+                      width: MediaQuery.of(context).size.width * 0.4,
                       height: 55.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                       );
                     },
                     child: Container(
-                        width: 164.w,
+                      width: MediaQuery.of(context).size.width * 0.4,
                         height: 55.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),

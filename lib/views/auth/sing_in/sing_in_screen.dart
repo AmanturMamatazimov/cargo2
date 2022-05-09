@@ -87,7 +87,7 @@ class _SingInScreenState extends State<SingInScreen> {
         ),
         SizedBox(width: 10.w),
         Container(
-          width: 303.w,
+          width: MediaQuery.of(context).size.width * 0.7,
           child: RichText(
             text: TextSpan(
               children: [
@@ -230,19 +230,21 @@ class _SingInScreenState extends State<SingInScreen> {
                 SizedBox(height: 24.h),
                 politikConf(),
                 SizedBox(height: 48.h),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Main(),
-                      ),
-                    );
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Main(),
+                        ),
+                      );
 
-                  },
-                  child: Text(
-                    'Войти',
-                    style: AppTextStyles.white16Medium,
+                    },
+                    child: Text(
+                      'Войти',
+                      style: AppTextStyles.white16Medium,
+                    ),
                   ),
                 ),
                 SizedBox(height: 169.h),

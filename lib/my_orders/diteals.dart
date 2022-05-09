@@ -258,7 +258,8 @@ class _DitealsState extends State<Diteals> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Куда',style: AppTextStyles.blackGrey12Regular),
-                          Container(width:283.w,child: Text('Офис Sapat cargo, г.Бишкек, Токольдош...',style: AppTextStyles.black16Regular))
+                          Container(width:   MediaQuery.of(context).size.width * 0.6,
+                              child: Text('Офис Sapat cargo, г.Бишкек, Токольдош...',style: AppTextStyles.black16Regular))
                         ],
                       ),
 

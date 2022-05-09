@@ -231,11 +231,11 @@ class _MenuPageState extends State<MenuPage> {
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   children: [
-                  //   SvgPicture.asset(
-                  // 'assets/icons/frame.svg',
-                  // color: Colors.blue,
-                  //   ),
-                    Icon(Icons.door_back_door_outlined,color: Colors.blue),
+                    SvgPicture.asset(
+                  'assets/icons/frame.svg',
+                  color: Colors.blue,
+                    ),
+                  //   Icon(Icons.door_back_door_outlined,color: Colors.blue),
                     SizedBox(width: 20.w),
                     Text('Выйти',style: AppTextStyles.profile ,)
                   ],
