@@ -1,10 +1,11 @@
-import 'package:cargo_app/editing/editing.dart';
+
+
+import 'package:cargo_app/menu/settings.dart';
 import 'package:cargo_app/styles/app_colors.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../editing/editing1.dart';
 
 class MyProfile extends StatefulWidget {
@@ -16,16 +17,24 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
 
-
-
   Widget buildEditIcon(Color color) => buildCircle(
       color: color,
       all: 8,
-
-      child: Icon(
-        Icons.edit,
-        color: Colors.white,
-        size: 10,
+      child: GestureDetector(
+        onTap: ()
+        {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Settings(),
+              )
+          );
+        },
+        child: Icon(
+          Icons.edit,
+          color: Colors.white,
+          size: 10,
+        ),
       )
   );
 
@@ -39,13 +48,6 @@ class _MyProfileState extends State<MyProfile> {
       child: child,
     ),
   );
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -178,6 +180,20 @@ class _MyProfileState extends State<MyProfile> {
   }
 }
 
+void bottomsheets(context){
+  showModalBottomSheet(context: context,
+      builder: (context) => Center(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25) ,
+              topRight: Radius.circular(25)
+            )
+          ),
+        ),
+      ));
+}
 
 
 

@@ -5,17 +5,13 @@ import 'package:cargo_app/main/sppage.dart';
 import 'package:cargo_app/menu/about_company.dart';
 import 'package:cargo_app/menu/exit.dart';
 import 'package:cargo_app/menu/guation_answer.dart';
-import 'package:cargo_app/menu/location_sapat_cargo.dart';
-import 'package:cargo_app/menu/my_order.dart';
 import 'package:cargo_app/menu/my_profil.dart';
 import 'package:cargo_app/menu/safity.dart';
-import 'package:cargo_app/menu/see_package.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);

@@ -134,7 +134,7 @@ class _HomeState extends State<Home> {
                           enabledBorder: OutlineInputBorder(),
                           border: OutlineInputBorder(
                             borderSide:
-                                BorderSide(color: Color(0xffF3F3F3), width: 1),
+                                BorderSide(color: Colors.black45),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           filled: true,
