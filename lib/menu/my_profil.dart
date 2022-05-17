@@ -4,6 +4,7 @@ import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../editing/editing1.dart';
 
@@ -22,19 +23,36 @@ class _MyProfileState extends State<MyProfile> {
         title: Text('Профиль'),
         ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 32),
+        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 32.h),
         child: Column(
            children: <Widget>[
-             Container(
-               width: 120.w,
-               height: 120.h,
-               decoration: BoxDecoration(
-                 shape: BoxShape.circle,
-                 image: DecorationImage(
-                   fit: BoxFit.cover,
-                   image: AssetImage('assets/marina.png'),
+             Stack(
+               children: [
+                 Container(
+                   width: 120.w,
+                   height: 120.h,
+                   decoration: BoxDecoration(
+                     shape: BoxShape.circle,
+                     image: DecorationImage(
+                       fit: BoxFit.cover,
+                       image: AssetImage('assets/marina.png'),
+                     )
+                   ),
+                 ),
+                 Positioned(
+                   right: 15.w,
+                   child: Container(
+                     padding: EdgeInsets.symmetric(vertical: 5.h,horizontal: 5.w),
+                     width: 24.w,
+                     height: 24.h,
+                     decoration: BoxDecoration(
+                       color: Color(0xFFB2E6FF),
+                       shape: BoxShape.circle,
+                     ),
+                     child: SvgPicture.asset('assets/icons/edit.svg'),
+                   ),
                  )
-               ),
+               ],
              ),
              SizedBox(height: 32.h),
              Container(

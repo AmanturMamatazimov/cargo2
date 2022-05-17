@@ -20,6 +20,13 @@ class AppTextStyles {
     color: AppColors.mainBlack,
   );
 
+  static TextStyle tablePay= TextStyle(
+    fontSize: 24.sp,
+    fontFamily: 'SF Pro Display',
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
+
   static TextStyle black16Medium = TextStyle(
     fontSize: 16.sp,
     fontFamily: 'Gilroy',

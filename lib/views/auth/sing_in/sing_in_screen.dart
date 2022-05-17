@@ -202,7 +202,7 @@ class _SingInScreenState extends State<SingInScreen> {
         onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
         child: SafeArea(
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

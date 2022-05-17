@@ -30,7 +30,7 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 76, left: 16, right: 16),
+        padding: EdgeInsets.only(top: 76.h, left: 16.w, right: 16.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -231,11 +231,10 @@ class _MenuPageState extends State<MenuPage> {
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   children: [
-                  //   SvgPicture.asset(
-                  // 'assets/icons/frame.svg',
-                  // color: Colors.blue,
-                  //   ),
-                    Icon(Icons.door_back_door_outlined,color: Colors.blue),
+                    SvgPicture.asset(
+                  'assets/icons/frame.svg',
+                  color: Colors.blue,
+                    ),
                     SizedBox(width: 20.w),
                     Text('Выйти',style: AppTextStyles.profile ,)
                   ],

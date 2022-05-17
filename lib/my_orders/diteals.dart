@@ -20,7 +20,7 @@ class _DitealsState extends State<Diteals> {
         title: Text('Мои заказы'),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 32),
+        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 32.h),
         child: Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(

@@ -25,13 +25,12 @@ class _HomeState extends State<Home> {
       ),
 
       body: Padding(
-        padding: const EdgeInsets.only(left: 16, top: 32, right: 16),
+        padding: EdgeInsets.only(left: 16.w, top: 32.h, right: 16.w),
         child:  SingleChildScrollView(
           child: Column(
      mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               TextFormField(
                 onChanged: (value){
                   setState(() {

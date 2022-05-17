@@ -28,7 +28,7 @@ class _IfIncorrectState extends State<IfIncorrect> {
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

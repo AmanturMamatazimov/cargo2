@@ -61,115 +61,118 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text('Редактирование'),
         ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Имя', style: AppTextStyles.black12Medium),
-              SizedBox(height: 4.h),
-              TextFormField(
-                autofocus: false,
-                decoration: InputDecoration(
-                  hintText: "Марина",
-                  // border: InputBorder.none,
+        body: GestureDetector(
+          onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Имя', style: AppTextStyles.black12Medium),
+                SizedBox(height: 4.h),
+                TextFormField(
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: "Марина",
+                    // border: InputBorder.none,
+                  ),
                 ),
-              ),
-              SizedBox(height: 15.h),
-              Text('Фамилия', style: AppTextStyles.black12Medium),
-              SizedBox(height: 4.h),
-              TextFormField(
-                autofocus: false,
-                decoration: InputDecoration(
-                  hintText: "Ивановна",
-                  // border: InputBorder.none,
+                SizedBox(height: 15.h),
+                Text('Фамилия', style: AppTextStyles.black12Medium),
+                SizedBox(height: 4.h),
+                TextFormField(
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: "Ивановна",
+                    // border: InputBorder.none,
+                  ),
                 ),
-              ),
-              SizedBox(height: 15.h),
-              Text('Номер телефона', style: AppTextStyles.black12Medium),
-              SizedBox(height: 4.h),
-              TextField(
-                keyboardType: TextInputType.phone,
-                autofocus: false,
-                decoration: InputDecoration(
-                  hintText: "+996 705 779 778",
-                  // border: InputBorder.none,
+                SizedBox(height: 15.h),
+                Text('Номер телефона', style: AppTextStyles.black12Medium),
+                SizedBox(height: 4.h),
+                TextField(
+                  keyboardType: TextInputType.phone,
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: "+996 705 779 778",
+                    // border: InputBorder.none,
+                  ),
                 ),
-              ),
-              SizedBox(height: 15.h),
-              Text('Место проживания', style: AppTextStyles.black12Medium),
-              SizedBox(height: 4.h),
-              TextField(
-                autofocus: false,
-                decoration: InputDecoration(
-                  hintText: "Кыргызстан,Бишкек",
-                  // border: InputBorder.none,
+                SizedBox(height: 15.h),
+                Text('Место проживания', style: AppTextStyles.black12Medium),
+                SizedBox(height: 4.h),
+                TextField(
+                  autofocus: false,
+                  decoration: InputDecoration(
+                    hintText: "Кыргызстан,Бишкек",
+                    // border: InputBorder.none,
+                  ),
                 ),
-              ),
-              SizedBox(height: 15.h),
-              Text('Дата рождения', style: AppTextStyles.black12Medium),
-              SizedBox(height: 4.h),
-              GestureDetector(
-                onTap: () => _selectDate(context),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffF3F3F3)),
-                  child: Center(
-                    child: Text(
-                      "${selectedDate.toLocal()}".split(' ')[0],
-                      style: AppTextStyles.black16Medium,
+                SizedBox(height: 15.h),
+                Text('Дата рождения', style: AppTextStyles.black12Medium),
+                SizedBox(height: 4.h),
+                GestureDetector(
+                  onTap: () => _selectDate(context),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color(0xffF3F3F3)),
+                    child: Center(
+                      child: Text(
+                        "${selectedDate.toLocal()}".split(' ')[0],
+                        style: AppTextStyles.black16Medium,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 15.h),
-              Text('Пол', style: AppTextStyles.black12Medium),
-              Container(
-                child: Form(
-                    key: _dropdownFormKey,
-                    child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(),
-                          border: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Color(0xffF3F3F3), width: 1),
-                            borderRadius: BorderRadius.circular(10),
+                SizedBox(height: 15.h),
+                Text('Пол', style: AppTextStyles.black12Medium),
+                Container(
+                  child: Form(
+                      key: _dropdownFormKey,
+                      child: DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(),
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Color(0xffF3F3F3), width: 1),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xffF3F3F3),
                           ),
-                          filled: true,
-                          fillColor: Color(0xffF3F3F3),
-                        ),
-                        validator: (value) =>
-                            value == null ? "Select a country" : null,
-                        dropdownColor: Color(0xffF3F3F3),
-                        value: selectedValue,
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            selectedValue = newValue!;
-                          });
-                        },
-                        items: dropdownItems)),
-              ),
-              SizedBox(
-                height: 29.h,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.mainColor),
-                  child: Center(
-                    child: Text(
-                      'Сохранить',
-                      style: AppTextStyles.textbottom,
+                          validator: (value) =>
+                              value == null ? "Select a country" : null,
+                          dropdownColor: Color(0xffF3F3F3),
+                          value: selectedValue,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedValue = newValue!;
+                            });
+                          },
+                          items: dropdownItems)),
+                ),
+                SizedBox(
+                  height: 29.h,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.mainColor),
+                    child: Center(
+                      child: Text(
+                        'Сохранить',
+                        style: AppTextStyles.textbottom,
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ));
   }

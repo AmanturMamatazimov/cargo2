@@ -20,7 +20,7 @@ class _MyOrdersState extends State<MyOrders> {
         title: Text('Мои заказы'),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -43,7 +43,7 @@ class _MyOrdersState extends State<MyOrders> {
                     ));
               },
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.symmetric(vertical: 16.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AppColors.mainColor),

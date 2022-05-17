@@ -21,7 +21,7 @@ class _MyorderState extends State<Myorder> {
         title: Text('Отследить заказ'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 16,vertical: 32),
+        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 32.h),
           child: Column(
             children: [
               GestureDetector(
