@@ -1,25 +1,29 @@
+import 'package:cargo_app/riverpod/register_riverpod.dart';
 import 'package:cargo_app/styles/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../riverpod/riverpod_management.dart';
 import '../../../styles/app_text_styles.dart';
 import '../../../utils/strings.dart';
 
-class SingUpScreen extends StatefulWidget {
+class SingUpScreen extends ConsumerStatefulWidget {
   const SingUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SingUpScreenState createState() => _SingUpScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SingUpScreenState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
+class _SingUpScreenState extends ConsumerState<SingUpScreen> {
   bool passwordObscured = true;
-  bool confirmObscured=false;
+  bool confirmObscured=true;
 
   phoneField() {
     return TextFormField(
+      controller: ref.read(registerRiverpod).phone,
       autofocus: false,
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
@@ -30,8 +34,21 @@ class _SingUpScreenState extends State<SingUpScreen> {
     );
   }
 
+  emailField() {
+    return TextFormField(
+      controller: ref.read(registerRiverpod).email,
+      autofocus: false,
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        hintText: 'Электронный адресс',
+        hintStyle: AppTextStyles.hint16Medium,
+      ),
+    );
+  }
+
   passwordField() {
     return TextFormField(
+      controller: ref.read(registerRiverpod).password,
       autofocus: false,
       obscureText: passwordObscured,
       decoration: InputDecoration(
@@ -57,6 +74,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
   }
   confirmField() {
     return TextFormField(
+      controller: ref.read(registerRiverpod).password2,
       autofocus: false,
       obscureText: confirmObscured,
       decoration: InputDecoration(
@@ -238,6 +256,13 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 phoneField(),
                 SizedBox(height: 24.h),
                 Text(
+                  'Электронный адресс',
+                  style: AppTextStyles.kRobotoReg12ColorBlack500,
+                ),
+                SizedBox(height: 4.h),
+                emailField(),
+                SizedBox(height: 24.h),
+                Text(
                   'Создайте пароль',
                   style: AppTextStyles.kRobotoReg12ColorBlack500,
                 ),
@@ -254,9 +279,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                 politikConf(),
                 SizedBox(height: 48.h),
                 ElevatedButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () => ref.read(registerRiverpod).registerFetch(),
                   style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
                     padding: MaterialStateProperty.all(
                       const EdgeInsets.symmetric(

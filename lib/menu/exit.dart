@@ -2,6 +2,8 @@ import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:cargo_app/views/auth/sing_in/sing_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:grock/grock.dart';
 
 class Exit extends StatefulWidget {
   const Exit({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class Exit extends StatefulWidget {
 }
 
 class _ExitState extends State<Exit> {
+  final box=GetStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +44,8 @@ class _ExitState extends State<Exit> {
 
               GestureDetector(
                   onTap: (){
-                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                        SingInScreen()), (Route<dynamic> route) => false);
+                    box.remove('access');
+                    Grock.toRemove(Login());
                   },
                   child: Text('Выйти', style: AppTextStyles.black14Regular)),
               SizedBox(height: 10.h),

@@ -1,7 +1,9 @@
 import 'package:cargo_app/main/main.dart';
+import 'package:cargo_app/riverpod/riverpod_management.dart';
 import 'package:cargo_app/views/auth/sing_up/sing_up_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,18 +11,19 @@ import '../../../styles/app_text_styles.dart';
 import '../../../utils/strings.dart';
 import '../password/password_screen.dart';
 
-class SingInScreen extends StatefulWidget {
-  const SingInScreen({Key? key}) : super(key: key);
+class Login extends ConsumerStatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  _SingInScreenState createState() => _SingInScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SingInScreenState();
 }
 
-class _SingInScreenState extends State<SingInScreen> {
+class _SingInScreenState extends ConsumerState<Login> {
   bool passwordObscured = true;
 
   phoneField() {
     return TextFormField(
+      controller: ref.read(loginRiverpod).phone,
       autofocus: false,
       keyboardType: TextInputType.phone,
       textInputAction: TextInputAction.next,
@@ -33,6 +36,7 @@ class _SingInScreenState extends State<SingInScreen> {
 
   passwordField() {
     return TextFormField(
+      controller: ref.read(loginRiverpod).password,
       autofocus: false,
       obscureText: passwordObscured,
       decoration: InputDecoration(
@@ -231,15 +235,7 @@ class _SingInScreenState extends State<SingInScreen> {
                 politikConf(),
                 SizedBox(height: 48.h),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Main(),
-                      ),
-                    );
-
-                  },
+                  onPressed: () => ref.read(loginRiverpod).fetch(),
                   child: Text(
                     'Войти',
                     style: AppTextStyles.white16Medium,

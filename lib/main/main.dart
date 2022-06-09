@@ -2,17 +2,19 @@
 import 'package:cargo_app/main/my_orders.dart';
 import 'package:cargo_app/main/sppage.dart';
 import 'package:cargo_app/main/home.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Main extends StatefulWidget {
+class Main extends ConsumerStatefulWidget {
   const Main({Key? key}) : super(key: key);
 
   @override
-  State<Main> createState() => _MainState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _MainState();
 }
 
-class _MainState extends State<Main> {
+class _MainState extends ConsumerState<Main> {
   int index = 0;
   final screens = [
     const Home(),
