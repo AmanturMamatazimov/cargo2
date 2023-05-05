@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,7 +30,7 @@ class AppTheme {
     ),
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.filColor,
+      fillColor: Colors.white,
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -47,8 +46,8 @@ class AppTheme {
     ),
     textTheme: TextTheme(
       headline1: AppTextStyles.kRobotoReg40ColorBlack600,
-      headline2:
-          AppTextStyles.kRobotoReg40ColorBlack600.copyWith(fontWeight: FontWeight.w600),
+      headline2: AppTextStyles.kRobotoReg40ColorBlack600
+          .copyWith(fontWeight: FontWeight.w600),
       headline6: AppTextStyles.black16Medium,
     ),
   );

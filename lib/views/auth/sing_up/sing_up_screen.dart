@@ -1,283 +1,202 @@
-import 'package:cargo_app/styles/app_colors.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../../styles/app_text_styles.dart';
-import '../../../utils/strings.dart';
+import 'dart:convert';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({Key? key}) : super(key: key);
+import 'package:cargo_app/main/main.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../services/service.dart';
+import '../sing_in/sing_in_screen.dart';
+
+class RagistrationScreen extends StatefulWidget {
+  const RagistrationScreen({Key? key}) : super(key: key);
 
   @override
-  _SingUpScreenState createState() => _SingUpScreenState();
+  State<RagistrationScreen> createState() => _RagistrationScreenState();
 }
 
-class _SingUpScreenState extends State<SingUpScreen> {
+class _RagistrationScreenState extends State<RagistrationScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final emailEditingController = new TextEditingController();
+  final fioEditingController = new TextEditingController();
+  final passwordController = new TextEditingController();
   bool passwordObscured = true;
-  bool confirmObscured=false;
 
-  phoneField() {
-    return TextFormField(
-      autofocus: false,
-      keyboardType: TextInputType.phone,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        hintText: 'Номер телефона',
-        hintStyle: AppTextStyles.hint16Medium,
-      ),
-    );
+  late int selectedRadio;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio = 0;
   }
 
-  passwordField() {
-    return TextFormField(
-      autofocus: false,
-      obscureText: passwordObscured,
-      decoration: InputDecoration(
-        hintText: 'Пароль',
-        hintStyle: AppTextStyles.hint16Medium,
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              passwordObscured = !passwordObscured;
-            });
-          },
-          child: Padding(
-            padding: EdgeInsets.all(11.w),
-            child: SvgPicture.asset(
-                passwordObscured
-                    ? 'assets/icons/password_hidden.svg'
-                    : 'assets/icons/password.svg'
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-  confirmField() {
-    return TextFormField(
-      autofocus: false,
-      obscureText: confirmObscured,
-      decoration: InputDecoration(
-        hintText: 'Повторите пароль',
-        hintStyle: AppTextStyles.hint16Medium,
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              confirmObscured = !confirmObscured;
-            });
-          },
-          child: Padding(
-            padding: EdgeInsets.all(11.w),
-            child: SvgPicture.asset(
-                confirmObscured
-                    ? 'assets/icons/password_hidden.svg'
-                    : 'assets/icons/password.svg'
-            ),
-          ),
-        ),
-      ),
-    );
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });
   }
 
-  bool check=false;
-
-  politikConf(){
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              check = !check;
-            });
-          },
-          child: Container(
-            width: 23,
-            height: 23,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: check
-                  ? Color(0xFF3D8BFF)
-                  : Color(0xFFE0E0E0),
-            ),
-            child: check
-                ? Center(
-              child: Icon(Icons.check,
-                  color: Colors.white, size: 15),
-            )
-                : Center(),
-          ),
-        ),
-        SizedBox(width: 10.w),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: RichText(
-            text: new TextSpan(
-              children: [
-                new TextSpan(
-                  text: 'Согласен ',
-                  style: AppTextStyles.black16Medium,
-                ),
-                new TextSpan(
-                  text: 'правилами',
-                  style: AppTextStyles.black16SemiboldUnderline,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      launch(
-                          'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
-                    },
-                ),
-                new TextSpan(
-                  text: ' сайта и ',
-                  style: AppTextStyles.black16Medium,
-                ),
-                new TextSpan(
-                  text: 'политикой',
-                  style: AppTextStyles.black16SemiboldUnderline,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      launch(
-                          'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
-                    },
-                ),
-                new TextSpan(
-                    text: ' '
-                ),
-                new TextSpan(
-                  text: 'конфиденциальности',
-                  style: AppTextStyles.black16SemiboldUnderline,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      launch(
-                          'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
-                    },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  forgotPassword(){
-    return Center(
-      child: RichText(
-        text: new TextSpan(
-          children: [
-            new TextSpan(
-              text: 'Забыли пароль',
-              style: AppTextStyles.mainColor16SemiBold,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                },
-            ),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-  singIn(){
-    return Center(
-      child: RichText(
-        text: new TextSpan(
-          children: [
-            new TextSpan(
-              text: 'Уже есть аккаунт? ',
-              style: AppTextStyles.blackGrey16Regular,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                },
-            ),
-            new TextSpan(
-              text: 'Войти',
-              style: AppTextStyles.mainColor16SemiBold,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                    Navigator.pop(context);
-                },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-
+  bool check1 = false;
+  bool check2 = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.white,
-      ),
-      body: GestureDetector(
-        onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Регистрация',
-                  style: AppTextStyles.kRobotoReg40ColorBlack600,
-                ),
-                SizedBox(height: 40.h),
-                Text(
-                  Strings.phoneNumber,
-                  style: AppTextStyles.kRobotoReg12ColorBlack500,
-                ),
-                SizedBox(
-                  height: 4.h,
-                ),
-                phoneField(),
-                SizedBox(height: 24.h),
-                Text(
-                  'Создайте пароль',
-                  style: AppTextStyles.kRobotoReg12ColorBlack500,
-                ),
-                SizedBox(height: 4.h),
-                passwordField(),
-                SizedBox(height: 24.h),
-                Text(
-                  "Повторите пароль",
-                  style: AppTextStyles.kRobotoReg12ColorBlack500,
-                ),
-                SizedBox(height: 4.h),
-                confirmField(),
-                SizedBox(height: 24.h),
-                politikConf(),
-                SizedBox(height: 48.h),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
+    final fioField = TextFormField(
+        autofocus: false,
+        controller: fioEditingController,
+        keyboardType: TextInputType.emailAddress,
+        onSaved: (value) {
+          fioEditingController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+          hintText: 'Имя пользователя',
+        ));
 
-                    },
-                    style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-                      padding: MaterialStateProperty.all(
-                        const EdgeInsets.symmetric(
-                          horizontal: 118,
-                          vertical: 15,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      'Регистрация',
-                      style: AppTextStyles.white16Medium,
-                    ),
+    final emailField = TextFormField(
+        autofocus: false,
+        controller: emailEditingController,
+        keyboardType: TextInputType.emailAddress,
+        onSaved: (value) {
+          emailEditingController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: const InputDecoration(
+          hintText: 'Почта',
+          border: InputBorder.none,
+        ));
+    final passwordField = TextFormField(
+      autofocus: false,
+      controller: passwordController,
+      obscureText: true,
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        hintText: 'Пароль',
+        suffixIcon: IconButton(
+            onPressed: () {
+              setState(() {
+                passwordObscured = !passwordObscured;
+              });
+            },
+            icon: Icon(
+              passwordObscured ? Icons.visibility_off : Icons.vignette,
+            )),
+      ),
+    );
+
+    final signUpButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(15),
+      color: const Color(0xffFFB951),
+      child: MaterialButton(
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        minWidth: MediaQuery.of(context).size.width,
+        onPressed: () async {
+          var json = {
+            'name': fioEditingController.text,
+            'email': emailEditingController.text,
+            'password': passwordController.text,
+          };
+          String ans = await AuthClient().postSingUp(json);
+          if (ans != null) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Main()));
+            Map<String, dynamic> userData = jsonDecode(ans);
+            String id = userData['id'].toString();
+            String userName = userData['name'];
+            String userRole = userData['role'];
+            print(id);
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString('userId', id);
+            prefs.setString('userName', userName);
+            prefs.setString('userRole', userRole);
+          }
+        },
+        child: const Text(
+          'Зарегистироваться',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(height: 100),
+            const Text("Registor"),
+            const SizedBox(height: 25),
+            const Text(
+              'Регистрация',
+              style: TextStyle(
+                  color: Color(0xFF444444),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: const Color(0xFFEDEDEF),
+              ),
+              child: fioField,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: const Color(0xFFEDEDEF),
+              ),
+              child: emailField,
+            ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.only(left: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: const Color(0xFFEDEDEF),
+              ),
+              child: passwordField,
+            ),
+            const SizedBox(height: 20),
+            signUpButton,
+            const SizedBox(height: 80),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text('У вас есть аккаунт? '),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
+                  },
+                  child: const Text(
+                    'Войти',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                        color: Color(0xffFFB951)),
                   ),
-                ),
-                SizedBox(height: 110.h),
-                singIn(),
-                SizedBox(height: 58.h),
+                )
               ],
             ),
-          ),
+            const SizedBox(height: 55),
+          ],
         ),
       ),
     );

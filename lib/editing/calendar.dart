@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +14,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class DatePickerDemo extends StatefulWidget {
   @override
@@ -55,14 +52,13 @@ class _DatePickerDemoState extends State<DatePickerDemo> {
             SizedBox(
               height: 20.0,
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () => _selectDate(context),
               child: Text(
                 'Select date',
                 style:
-                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
-              color: Colors.greenAccent,
             ),
           ],
         ),

@@ -1,259 +1,173 @@
-import 'package:cargo_app/main/main.dart';
-import 'package:cargo_app/views/auth/sing_up/sing_up_screen.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../../styles/app_text_styles.dart';
-import '../../../utils/strings.dart';
-import '../password/password_screen.dart';
+// import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 
-class SingInScreen extends StatefulWidget {
-  const SingInScreen({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../editing/editing1.dart';
+import '../../../main/main.dart';
+import '../../../services/service.dart';
+import '../sing_up/sing_up_screen.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  _SingInScreenState createState() => _SingInScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SingInScreenState extends State<SingInScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool passwordObscured = true;
-
-  phoneField() {
-    return TextFormField(
-      autofocus: false,
-      keyboardType: TextInputType.phone,
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        hintText: 'Номер телефона',
-        hintStyle: AppTextStyles.hint16Medium,
-      ),
-    );
-  }
-
-  passwordField() {
-    return TextFormField(
-      autofocus: false,
-      obscureText: passwordObscured,
-      decoration: InputDecoration(
-        hintText: 'Пароль',
-        hintStyle: AppTextStyles.hint16Medium,
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              passwordObscured = !passwordObscured;
-            });
-          },
-          child: Padding(
-            padding: EdgeInsets.all(11.w),
-            child: SvgPicture.asset(
-              passwordObscured
-                  ? 'assets/icons/password_hidden.svg'
-                  : 'assets/icons/password.svg'
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  bool check=false;
-
-  politikConf(){
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              check = !check;
-            });
-          },
-          child: Container(
-            width: 23,
-            height: 23,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: check
-                  ? Color(0xFF3D8BFF)
-                  : Color(0xFFE0E0E0),
-            ),
-            child: check
-                ? Center(
-              child: Icon(Icons.check,
-                  color: Colors.white, size: 15),
-            )
-                : Center(),
-          ),
-        ),
-        SizedBox(width: 10.w),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: RichText(
-            text: TextSpan(
-              children: [
-                 TextSpan(
-                  text: 'Согласен ',
-                  style: AppTextStyles.black16Medium,
-                ),
-                TextSpan(
-                  text: 'правилами',
-                  style: AppTextStyles.black16SemiboldUnderline,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      launch(
-                          'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
-                    },
-                ),
-                TextSpan(
-                  text: ' сайта и ',
-                  style: AppTextStyles.black16Medium,
-                ),
-                TextSpan(
-                  text: 'политикой',
-                  style: AppTextStyles.black16SemiboldUnderline,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      launch(
-                          'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
-                    },
-                ),
-                 TextSpan(
-                  text: ' '
-                ),
-                TextSpan(
-                  text: 'конфиденциальности',
-                  style: AppTextStyles.black16SemiboldUnderline,
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      launch(
-                          'https://drive.google.com/file/d/1EM0uL4W4s605Ou1R3irKuURsvKjxgu4U/view?usp=sharing');
-                    },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  forgotPassword(){
-    return Center(
-      child: RichText(
-        text: new TextSpan(
-          children: [
-            new TextSpan(
-              text: 'Забыли пароль',
-              style: AppTextStyles.mainColor16SemiBold,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PasswordScreen(),
-                    ),
-                  );
-                },
-            ),
-
-          ],
-        ),
-      ),
-    );
-  }
-
-  registration(){
-    return Center(
-      child: RichText(
-        text: new TextSpan(
-          children: [
-            new TextSpan(
-              text: 'Впервые у нас? ',
-              style: AppTextStyles.blackGrey16Regular,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                },
-            ),
-            new TextSpan(
-              text: 'Зарегистрироваться',
-              style: AppTextStyles.mainColor16SemiBold,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SingUpScreen(),
-                    ),
-                  );
-                },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: ()=>FocusScope.of(context).requestFocus(new FocusNode()),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 60.h),
-                Text(
-                  'Вход',
-                  style: AppTextStyles.kRobotoReg40ColorBlack600,
-                ),
-                SizedBox(height: 40.h),
-                Text(
-                  Strings.phoneNumber,
-                  style: AppTextStyles.kRobotoReg12ColorBlack500,
-                ),
-                SizedBox(
-                  height: 4.h,
-                ),
-                phoneField(),
-                SizedBox(height: 24.h),
-                Text(
-                  Strings.password,
-                  style: AppTextStyles.kRobotoReg12ColorBlack500,
-                ),
-                SizedBox(height: 4.h),
-                passwordField(),
-                SizedBox(height: 24.h),
-                politikConf(),
-                SizedBox(height: 48.h),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Main(),
-                        ),
-                      );
+    final phoneField = TextFormField(
+        autofocus: false,
+        controller: emailController,
+        keyboardType: TextInputType.emailAddress,
+        onSaved: (value) {
+          emailController.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+          // contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: 'Почта',
+        ));
+    final passwordField = TextFormField(
+      autofocus: false,
+      controller: passwordController,
+      obscureText: passwordObscured,
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+        border: InputBorder.none,
 
-                    },
-                    child: Text(
-                      'Войти',
-                      style: AppTextStyles.white16Medium,
-                    ),
+        // contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        hintText: 'Пароль',
+
+        // filled: true,
+        // fillColor: Color(0xffEDEDEF),
+        suffixIcon: IconButton(
+            onPressed: () {
+              setState(() {
+                passwordObscured = !passwordObscured;
+              });
+            },
+            icon: Icon(
+              passwordObscured ? Icons.visibility_off : Icons.visibility,
+            )),
+      ),
+    );
+
+    final loginButton = Material(
+      elevation: 5,
+      borderRadius: BorderRadius.circular(15),
+      color: const Color(0xffFFB951),
+      child: MaterialButton(
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        minWidth: MediaQuery.of(context).size.width,
+        onPressed: () async {
+          String ans = await AuthClient()
+              .postSingIn(emailController.text, passwordController.text);
+          if (ans != null) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => const Main()));
+            Map<String, dynamic> userData = jsonDecode(ans);
+            String id = userData['id'].toString();
+            String userName = userData['name'];
+            String userRole = userData['role'];
+            print(id);
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            prefs.setString('userId', id);
+            prefs.setString('userName', userName);
+            prefs.setString('userRole', userRole);
+          }
+        },
+        child: const Text(
+          'Войти',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        // physics: NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(),
+              Column(
+                children: [
+                  const Text("Manas IKT"),
+                  const SizedBox(height: 50),
+                  const Text(
+                    'Вход',
+                    style: TextStyle(fontSize: 18),
                   ),
-                ),
-                SizedBox(height: 169.h),
-                forgotPassword(),
-                SizedBox(height: 24.h),
-                registration(),
-                SizedBox(height: 58.h),
-              ],
-            ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: const Color(0xFFEDEDEF),
+                    ),
+                    child: phoneField,
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: const Color(0xFFEDEDEF),
+                    ),
+                    child: passwordField,
+                  ),
+                  const SizedBox(height: 15),
+                  loginButton,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        'У вас нету аккаунта? ',
+                        style: TextStyle(color: Color(0xff444444)),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const RagistrationScreen()));
+                        },
+                        child: const Text(
+                          'Зарегистрироваться',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                              color: Color(0xffFFB951)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

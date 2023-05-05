@@ -1,28 +1,24 @@
+import 'package:cargo_app/main/main.dart';
+import 'package:cargo_app/splash/splash_screen.dart';
 import 'package:cargo_app/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'views/splash_page/splash_page.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-
-
-void main() {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(
-    DevicePreview(
-      enabled: true,
-      tools: [
-        ...DevicePreview.defaultTools,
-
-      ],
-      builder: (context) => const Cargo(),
-    ),
+    Cargo(prefs: prefs),
   );
 }
 
 class Cargo extends StatelessWidget {
-  const Cargo({Key? key}) : super(key: key);
+  final prefs;
+  const Cargo({Key? key, required this.prefs}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,11 @@ class Cargo extends StatelessWidget {
         designSize: const Size(375, 855),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (_) {
+        builder: (context, child) {
           return MaterialApp(
             theme: AppTheme.themeData,
             debugShowCheckedModeBanner: false,
-            home: SplashPage(),
+            home: SplashScreen(prefs: prefs),
           );
         });
   }

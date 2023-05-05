@@ -11,16 +11,21 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 1), () {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => SingInScreen()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset('assets/logo.png',height: 192,width: 130,),
+        child: Image.asset(
+          'assets/logo.png',
+          height: 192,
+          width: 130,
+        ),
       ),
     );
   }
