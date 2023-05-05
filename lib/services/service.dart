@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthClient {
   var client = http.Client();
-  var ip = '192.168.1.103';
+  var ip = '192.168.20.33';
   var port = 2323;
 
   Future<dynamic> getProducts() async {
@@ -39,6 +39,26 @@ class AuthClient {
       host: ip,
       port: port,
       path: 'api/user/get/points',
+    );
+
+    var response = await client.get(uri);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print(response.body);
+      return response.body;
+    } else {
+      //throw exception and catch it in UI
+      print('error not found');
+      print(response.statusCode);
+      print(response.body);
+    }
+  }
+
+  Future<dynamic> getInfoPoint(String id) async {
+    var uri = Uri(
+      scheme: 'http',
+      host: ip,
+      port: port,
+      path: 'api/user/get/point/$id',
     );
 
     var response = await client.get(uri);
@@ -245,8 +265,10 @@ class AuthClient {
 
 // request.files.add(await http.MultipartFile.fromPath("images", path));
     final fileBytes = await file.readAsBytes();
+    var type = file.path.split('.').last;
+    print(type);
     final httpImage = http.MultipartFile.fromBytes('photo', fileBytes.toList(),
-        contentType: MediaType('image', 'jpeg'), filename: file.name);
+        contentType: MediaType('image', type), filename: file.name);
 //for completeing the request
     request.files.add(httpImage);
     request.fields['x'] = lng.latitude.toString();

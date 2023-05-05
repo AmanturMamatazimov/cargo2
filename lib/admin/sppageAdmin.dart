@@ -12,14 +12,14 @@ import 'package:location/location.dart' as loc;
 import '../fetches/info_point_fetch.dart';
 import '../model/points_model.dart';
 
-class SPPage extends StatefulWidget {
-  const SPPage({Key? key}) : super(key: key);
+class spAdminPage extends StatefulWidget {
+  const spAdminPage({Key? key}) : super(key: key);
 
   @override
-  State<SPPage> createState() => _SPPageState();
+  State<spAdminPage> createState() => _spAdminPageState();
 }
 
-class _SPPageState extends State<SPPage> {
+class _spAdminPageState extends State<spAdminPage> {
   late CameraPosition _initialCameraPosition = const CameraPosition(
     target: LatLng(42.882004, 74.582748),
     zoom: 11.5,
@@ -90,7 +90,7 @@ class _SPPageState extends State<SPPage> {
                   return const Center(child: CircularProgressIndicator());
                 },
               ),
-              if (markers.length > 0)
+              if (markers.length > 1)
                 Positioned(
                   left: 20,
                   bottom: 20,
@@ -247,11 +247,14 @@ class _SPPageState extends State<SPPage> {
     } catch (e) {
       currentLocation = null;
     }
+    if (markersId <= 1) {
+      markers.add(Marker(
+          markerId: MarkerId('marker$markersId'),
+          position: tapPosition,
+          icon: BitmapDescriptor.defaultMarker));
+      markersId++;
+    }
 
-    markers.add(Marker(
-        markerId: MarkerId('marker$markersId'),
-        position: tapPosition,
-        icon: BitmapDescriptor.defaultMarker));
     setState(() {});
     // _onMar(tapPosition);
     //markersId++;

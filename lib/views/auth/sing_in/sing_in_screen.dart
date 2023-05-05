@@ -76,8 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
           String ans = await AuthClient()
               .postSingIn(emailController.text, passwordController.text);
           if (ans != null) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const Main()));
             Map<String, dynamic> userData = jsonDecode(ans);
             String id = userData['id'].toString();
             String userName = userData['name'];
@@ -87,6 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
             prefs.setString('userId', id);
             prefs.setString('userName', userName);
             prefs.setString('userRole', userRole);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Main(role: userRole)));
+
+
           }
         },
         child: const Text(

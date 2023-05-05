@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
             MaterialPageRoute(
                 builder: (context) => widget.prefs.getString('userId') == null
                     ? const LoginScreen()
-                    : Main())));
+                    : Main(role: widget.prefs.getString('userRole')))));
   }
 
   @override

@@ -508,12 +508,7 @@ class _SendFormDataState extends State<SendFormData> {
                               gravity: ToastGravity.BOTTOM,
                               backgroundColor: Colors.green,
                               textColor: Colors.white);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Main(),
-                            ),
-                          );
+                          Navigator.pop(context);
                         } else {
                           Fluttertoast.showToast(
                               msg: 'Вышла ошибка!',

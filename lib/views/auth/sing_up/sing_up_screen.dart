@@ -105,8 +105,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
           };
           String ans = await AuthClient().postSingUp(json);
           if (ans != null) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Main()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
             Map<String, dynamic> userData = jsonDecode(ans);
             String id = userData['id'].toString();
             String userName = userData['name'];
