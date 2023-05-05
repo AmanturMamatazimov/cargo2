@@ -31,8 +31,10 @@ class _spAdminPageState extends State<spAdminPage> {
   loc.LocationData? currentLocation;
   mp.MapController? mapController;
   Set<Marker> markers = {};
+  Set<Marker> adminMarkers = {};
   late Future<PointsModel> futurePoints;
   late Future<InfoPointModel> futureInfoPoint;
+  final Set<Polyline> _polyline = {};
 
   @override
   void initState() {
@@ -85,12 +87,13 @@ class _spAdminPageState extends State<spAdminPage> {
                       onMapCreated: (controller) {
                         mapController = controller as mp.MapController;
                       },
+                      polylines: _polyline,
                     );
                   }
                   return const Center(child: CircularProgressIndicator());
                 },
               ),
-              if (markers.length > 1)
+              if (adminMarkers.length > 1)
                 Positioned(
                   left: 20,
                   bottom: 20,
@@ -110,7 +113,7 @@ class _spAdminPageState extends State<spAdminPage> {
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: Colors.blue),
                       child: const Icon(
-                        Icons.send,
+                        Icons.edit,
                         color: Colors.white,
                       ),
                     ),
@@ -249,10 +252,24 @@ class _spAdminPageState extends State<spAdminPage> {
     }
     if (markersId <= 1) {
       markers.add(Marker(
-          markerId: MarkerId('marker$markersId'),
-          position: tapPosition,
-          icon: BitmapDescriptor.defaultMarker));
+        markerId: MarkerId('adminMarker$markersId'),
+        position: tapPosition,
+        icon: BitmapDescriptor.defaultMarker,
+      ));
+      adminMarkers.add(Marker(
+        markerId: MarkerId('adminMarker$markersId'),
+        position: tapPosition,
+        icon: BitmapDescriptor.defaultMarker,
+      ));
+
       markersId++;
+    }
+    if (markersId > 1) {
+      _polyline.add(Polyline(
+        polylineId: PolylineId('1'),
+        points: [adminMarkers.first.position, adminMarkers.last.position],
+        color: Colors.green,
+      ));
     }
 
     setState(() {});
