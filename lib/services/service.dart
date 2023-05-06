@@ -243,14 +243,14 @@ class AuthClient {
     }
   }
 
-  Future<int> postProductAdd(var json) async {
+  Future<bool> postEditAdmin(var json) async {
     //var _payload = json.encode(object);
 
     var uri = Uri(
       scheme: 'http',
       host: ip,
       port: port,
-      path: 'Products/AddWithEmail',
+      path: 'api/set/section/road',
     );
 
     var response = await client.post(uri,
@@ -259,11 +259,12 @@ class AuthClient {
     print(response.statusCode);
     if (response.statusCode == 201 || response.statusCode == 200) {
       print(response.statusCode);
-      return int.parse(response.body);
+      print(response.body);
+      return true;
     } else {
       print('error not found');
       print(response.body);
-      return 0;
+      return false;
       //throw exception and catch it in UI
     }
   }

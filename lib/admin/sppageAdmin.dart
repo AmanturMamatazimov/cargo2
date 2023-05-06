@@ -35,7 +35,8 @@ class _spAdminPageState extends State<spAdminPage> {
   Set<Marker> adminMarkers = {};
   late Future<PointsModel> futurePoints;
   late Future<InfoPointModel> futureInfoPoint;
-  final Set<Polyline> _polyline = {};
+  late Set<Polyline> _polyline = {};
+  late Set<Polyline> _adminPolyline = {};
 
   @override
   void initState() {
@@ -97,7 +98,7 @@ class _spAdminPageState extends State<spAdminPage> {
               if (adminMarkers.length > 1)
                 Positioned(
                   left: 20,
-                  bottom: 20,
+                  bottom: 80,
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -120,6 +121,34 @@ class _spAdminPageState extends State<spAdminPage> {
                     ),
                   ),
                 ),
+              Positioned(
+                left: 20,
+                bottom: 20,
+                child: InkWell(
+                  onTap: () {
+                    adminMarkers = {};
+                    Marker marker1 = markers.firstWhere(
+                        (marker) => marker.markerId.value == "adminMarker0");
+                    Marker marker2 = markers.firstWhere(
+                        (marker) => marker.markerId.value == "adminMarker1");
+                    markers.remove(marker1);
+                    markers.remove(marker2);
+                    _polyline = {};
+                    markersId = 0;
+                    setState(() {});
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.blue),
+                    child: const Icon(
+                      Icons.clear,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
               FutureBuilder<PointsModel>(
                 future: futurePoints,
                 builder: (context, snapshot) {

@@ -34,11 +34,16 @@ class _EditAdminDataState extends State<EditAdminData> {
   String hintText = 'Введите описания';
 
   int select = 0;
+  int selectStatus = 0;
 
   TextEditingController price = TextEditingController();
   TextEditingController name = TextEditingController();
-  TextEditingController description = TextEditingController();
+  TextEditingController lifeTime = TextEditingController();
   String selectContractor = '';
+  String contractorId = '';
+
+  DateTime selectedDate1 = DateTime.now();
+  DateTime selectedDate2 = DateTime.now();
 
   /*Widget bottomSheet() {
     return Container(
@@ -242,7 +247,6 @@ class _EditAdminDataState extends State<EditAdminData> {
                     fontSize: 24,
                     fontWeight: FontWeight.w400)),
           ),
-          const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
@@ -251,7 +255,15 @@ class _EditAdminDataState extends State<EditAdminData> {
                 const SizedBox(
                   height: 20,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
+                Padding(
+                    padding: EdgeInsets.only(left: 19.0),
+                    child: Text('Выберите подрядчика',
+                        style: TextStyle(
+                            color: Color(0xFF515151),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400))),
+                const SizedBox(height: 7),
                 GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
@@ -272,6 +284,16 @@ class _EditAdminDataState extends State<EditAdminData> {
                                       itemCount: snapshot.data!.data!.length,
                                       itemBuilder: (context, index) {
                                         return ListTile(
+                                          onTap: () {
+                                            selectContractor = snapshot
+                                                .data!.data![index].name!
+                                                .toString();
+                                            contractorId = snapshot
+                                                .data!.data![index].id!
+                                                .toString();
+                                            setState(() {});
+                                            Navigator.pop(context);
+                                          },
                                           title: Text(snapshot
                                               .data!.data![index].name!
                                               .toString()),
@@ -285,45 +307,33 @@ class _EditAdminDataState extends State<EditAdminData> {
                           );
                         });
                   },
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 19.0),
-                    child: selectContractor == ''
-                        ? Text('Выберите подрядчика',
-                            style: TextStyle(
-                                color: Color(0xFF515151),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400))
-                        : Text(selectContractor,
-                            style: TextStyle(
-                                color: Color(0xFF515151),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400)),
-                  ),
-                ),
-                const SizedBox(height: 7),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 19),
-                  height: 45,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.blue),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextField(
-                    controller: name,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Название объявления',
-                        hintStyle: TextStyle(
-                          color: Color(0xFFA6A6A6),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                        )),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 19),
+                    height: 45,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.blue),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextField(
+                      enabled: false,
+                      controller: name,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: selectContractor == ''
+                              ? 'Название объявления'
+                              : selectContractor,
+                          hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          )),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
                 const Padding(
                   padding: EdgeInsets.only(left: 19.0),
-                  child: Text('Описания объявления',
+                  child: Text('Срок',
                       style: TextStyle(
                           color: Color(0xFF515151),
                           fontSize: 16,
@@ -332,16 +342,47 @@ class _EditAdminDataState extends State<EditAdminData> {
                 const SizedBox(height: 7),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 19),
-                  height: 90,
                   decoration: BoxDecoration(
                     border: Border.all(width: 1, color: Colors.blue),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
-                    controller: description,
+                    keyboardType: TextInputType.phone,
+                    controller: lifeTime,
                     decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Введите описание',
+                        hintText: 'Введите срок эксплуатации',
+                        hintStyle: TextStyle(
+                          color: Color(0xFFA6A6A6),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 19.0),
+                  child: Text('Бюджет',
+                      style: TextStyle(
+                          color: Color(0xFF515151),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400)),
+                ),
+                const SizedBox(height: 7),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 19),
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    controller: price,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Введите бюджет',
                         hintStyle: TextStyle(
                           color: Color(0xFFA6A6A6),
                           fontSize: 16,
@@ -462,6 +503,150 @@ class _EditAdminDataState extends State<EditAdminData> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (selectStatus == 1)
+                            selectStatus = 0;
+                          else
+                            selectStatus = 1;
+                        });
+                      },
+                      child: Container(
+                          width: 105,
+                          height: 71,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: selectStatus == 1
+                                ? Colors.blue
+                                : Color(0xffEDEDEF),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text('Планируется',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: selectStatus == 1
+                                          ? Colors.white
+                                          : Color(0xFF444444)))
+                            ],
+                          )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (selectStatus == 2)
+                            selectStatus = 0;
+                          else
+                            selectStatus = 2;
+                        });
+                      },
+                      child: Container(
+                          width: 105,
+                          height: 71,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: selectStatus == 2
+                                ? Colors.blue
+                                : Color(0xffEDEDEF),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Ремонтируется',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: selectStatus == 2
+                                        ? Colors.white
+                                        : Color(0xFF444444)),
+                              )
+                            ],
+                          )),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (selectStatus == 3)
+                            selectStatus = 0;
+                          else
+                            selectStatus = 3;
+                        });
+                      },
+                      child: Container(
+                          width: 105,
+                          height: 71,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: selectStatus == 3
+                                ? Colors.blue
+                                : Color(0xffEDEDEF),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text('Завершено',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: selectStatus == 3
+                                          ? Colors.white
+                                          : Color(0xFF444444)))
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 38),
+                        height: 45,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.blue),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                          "${selectedDate1.day}.${selectedDate1.month}.${selectedDate1.year}",
+                          style: TextStyle(color: Colors.blue, fontSize: 16),
+                        )),
+                      ),
+                    ),
+                    Text('-',
+                        style: TextStyle(color: Colors.blue, fontSize: 16)),
+                    GestureDetector(
+                      onTap: () {
+                        _selectDate2(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 38),
+                        height: 45,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.blue),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text(
+                          "${selectedDate2.day}.${selectedDate2.month}.${selectedDate2.year}",
+                          style: TextStyle(color: Colors.blue, fontSize: 16),
+                        )),
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 49),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -484,8 +669,39 @@ class _EditAdminDataState extends State<EditAdminData> {
                     GestureDetector(
                       onTap: () async {
                         print('basyldy');
-                        var json = {};
-                        int ans2 = await AuthClient().postProductAdd(json);
+                        print(selectedDate1.toString() +
+                            ' ' +
+                            selectedDate2.toString());
+                        var json = {
+                          'x1': widget.adminMarkers.first.position.longitude
+                              .toString(),
+                          'y1': widget.adminMarkers.last.position.latitude
+                              .toString(),
+                          'x2': widget.adminMarkers.last.position.longitude
+                              .toString(),
+                          'y2': widget.adminMarkers.last.position.latitude
+                              .toString(),
+                          'contractor_id': contractorId,
+                          'start_date': selectedDate1.year.toString() +
+                              selectedDate1.month.toString() +
+                              selectedDate1.day.toString(),
+                          'end_date': selectedDate2.year.toString() +
+                              selectedDate2.month.toString() +
+                              selectedDate2.day.toString(),
+                          'type': select == 1
+                              ? 'sidewalk'
+                              : select == 2
+                                  ? 'cycle_road'
+                                  : 'road',
+                          'lifetime': lifeTime.text,
+                          'status': selectStatus == 1
+                              ? 'planned'
+                              : selectStatus == 2
+                                  ? 'repairing'
+                                  : 'completed',
+                          'price': price.text
+                        };
+                        bool ans2 = await AuthClient().postEditAdmin(json);
                         if (ans2 != null) {
                           Fluttertoast.showToast(
                               msg: 'Успешно добавлено!',
@@ -567,5 +783,31 @@ class _EditAdminDataState extends State<EditAdminData> {
         ],
       ),
     );
+  }
+
+  _selectDate(BuildContext context) async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: selectedDate1,
+      firstDate: DateTime(2010),
+      lastDate: DateTime(2025),
+    );
+    if (selected != null && selected != selectedDate1)
+      setState(() {
+        selectedDate1 = selected;
+      });
+  }
+
+  _selectDate2(BuildContext context) async {
+    final DateTime? selected = await showDatePicker(
+      context: context,
+      initialDate: selectedDate2,
+      firstDate: DateTime(2010),
+      lastDate: DateTime(2025),
+    );
+    if (selected != null && selected != selectedDate2)
+      setState(() {
+        selectedDate2 = selected;
+      });
   }
 }
