@@ -2,9 +2,7 @@ import 'package:cargo_app/admin/sppageAdmin.dart';
 import 'package:cargo_app/main/menu_page.dart';
 import 'package:cargo_app/main/my_orders.dart';
 import 'package:cargo_app/main/sppage.dart';
-import 'package:cargo_app/main/home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Main extends StatefulWidget {
   final role;
@@ -62,22 +60,22 @@ class _MainState extends State<Main> {
                 BottomNavigationBarItem(
                     icon: Icon(
                       Icons.location_on_outlined,
-                      color: index == 1 ? Colors.blue : Colors.black,
+                      color: Colors.black,
                     ),
                     label: 'Пункты'),
                 BottomNavigationBarItem(
 
                     // icon: Icon(
                     // Icons.play_arrow_outlined,
-                    icon: SvgPicture.asset(
-                      'assets/icons/send.svg',
-                      color: index == 2 ? Colors.blue : Colors.black,
+                    icon: Icon(
+                      Icons.list,
+                      color: Colors.black,
                     ),
                     label: 'Справочники'),
                 BottomNavigationBarItem(
                     icon: Icon(
                       Icons.home_outlined,
-                      color: index == 3 ? Colors.blue : Colors.black,
+                      color: Colors.black,
                     ),
                     label: 'Меню'),
               ],

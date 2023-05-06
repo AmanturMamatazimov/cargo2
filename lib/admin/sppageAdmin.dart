@@ -35,8 +35,8 @@ class _spAdminPageState extends State<spAdminPage> {
   Set<Marker> adminMarkers = {};
   late Future<PointsModel> futurePoints;
   late Future<InfoPointModel> futureInfoPoint;
-  late Set<Polyline> _polyline = {};
-  late Set<Polyline> _adminPolyline = {};
+  Set<Polyline> _polyline = {};
+  Set<Polyline> _adminPolyline = {};
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _spAdminPageState extends State<spAdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Пункты SP'),
+        title: Text('Пункты'),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 0),
@@ -78,6 +78,14 @@ class _spAdminPageState extends State<spAdminPage> {
                     return Center(child: CircularProgressIndicator());
                   }
                   if (snapshot.hasData) {
+                    _polyline.add(Polyline(
+                      polylineId: PolylineId('admin'),
+                      points: [
+                        LatLng(74.56383548676968, 42.836853988529406),
+                        LatLng(74.56540390849113, 42.8450278)
+                      ],
+                      color: Colors.green,
+                    ));
                     return GoogleMap(
                       markers: markers,
                       myLocationEnabled: true,

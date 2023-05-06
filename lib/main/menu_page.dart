@@ -1,11 +1,5 @@
-import 'package:cargo_app/main/home.dart';
-import 'package:cargo_app/main/my_orders.dart';
-import 'package:cargo_app/main/sppage.dart';
 import 'package:cargo_app/menu/about_company.dart';
 import 'package:cargo_app/menu/exit.dart';
-import 'package:cargo_app/menu/guation_answer.dart';
-import 'package:cargo_app/menu/my_profil.dart';
-import 'package:cargo_app/menu/safity.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
