@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(15),
-      color: const Color(0xffFFB951),
+      color: Colors.blue,
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -85,10 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
             prefs.setString('userId', id);
             prefs.setString('userName', userName);
             prefs.setString('userRole', userRole);
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Main(role: userRole)));
-
-
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Main(role: userRole)));
           }
         },
         child: const Text(
@@ -104,73 +102,74 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         // physics: NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(),
-              Column(
-                children: [
-                  const Text("Manas IKT"),
-                  const SizedBox(height: 50),
-                  const Text(
-                    'Вход',
-                    style: TextStyle(fontSize: 18),
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(height: 100),
+            Column(
+              children: [
+                Image(
+                  image: AssetImage('assets/AppIcon.png'),
+                  width: 100,
+                  height: 100,
+                ),
+                const SizedBox(height: 50),
+                const Text(
+                  'Вход',
+                  style: TextStyle(fontSize: 18),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: const Color(0xFFEDEDEF),
                   ),
-                  const SizedBox(
-                    height: 50,
+                  child: phoneField,
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.only(left: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: const Color(0xFFEDEDEF),
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFFEDEDEF),
+                  child: passwordField,
+                ),
+                const SizedBox(height: 100),
+                loginButton,
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'У вас нету аккаунта? ',
+                      style: TextStyle(color: Color(0xff444444)),
                     ),
-                    child: phoneField,
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    padding: const EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFFEDEDEF),
-                    ),
-                    child: passwordField,
-                  ),
-                  const SizedBox(height: 15),
-                  loginButton,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const Text(
-                        'У вас нету аккаунта? ',
-                        style: TextStyle(color: Color(0xff444444)),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const RagistrationScreen()));
-                        },
-                        child: const Text(
-                          'Зарегистрироваться',
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const RagistrationScreen()));
+                      },
+                      child: const Text('Зарегистрироваться',
                           style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
-                              color: Color(0xffFFB951)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: Colors.blue,
+                          )),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

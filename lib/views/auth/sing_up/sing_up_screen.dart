@@ -93,7 +93,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
     final signUpButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(15),
-      color: const Color(0xffFFB951),
+      color: Colors.blue,
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -136,7 +136,11 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: 100),
-            const Text("Registor"),
+            Image(
+              image: AssetImage('assets/AppIcon.png'),
+              width: 100,
+              height: 100,
+            ),
             const SizedBox(height: 25),
             const Text(
               'Регистрация',
@@ -190,7 +194,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 15,
-                        color: Color(0xffFFB951)),
+                        color: Colors.blue),
                   ),
                 )
               ],

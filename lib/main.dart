@@ -1,10 +1,7 @@
-import 'package:cargo_app/main/main.dart';
 import 'package:cargo_app/splash/splash_screen.dart';
-import 'package:cargo_app/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'views/splash_page/splash_page.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() async {
@@ -28,7 +25,6 @@ class Cargo extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
-            theme: AppTheme.themeData,
             debugShowCheckedModeBanner: false,
             home: SplashScreen(prefs: prefs),
           );

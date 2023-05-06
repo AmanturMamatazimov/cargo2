@@ -1,13 +1,7 @@
 import 'package:cargo_app/fetches/info_contractor_fetch.dart';
 import 'package:cargo_app/main/select_contractor.dart';
 import 'package:cargo_app/model/info_contractor_model.dart';
-import 'package:cargo_app/my_orders/my_orders.dart';
-import 'package:cargo_app/services/service.dart';
-import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../styles/app_colors.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({Key? key}) : super(key: key);
@@ -57,14 +51,15 @@ class _MyOrdersState extends State<MyOrders> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SelectContractor(data:
-                              snapshot.data!.data!.elementAt(index).id),
+                          builder: (context) => SelectContractor(
+                              data: snapshot.data!.data!.elementAt(index).id),
                         ),
                       );
                     },
                     child: Container(
                       padding: EdgeInsets.all(10),
-                      child: Text("${snapshot.data!.data!.elementAt(index).name}"),
+                      child:
+                          Text("${snapshot.data!.data!.elementAt(index).name}"),
                     ),
                   ),
                 );
