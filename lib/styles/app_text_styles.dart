@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_colors.dart';
-import 'colors.dart';
 
 // Roboto-Regular
 class AppTextStyles {
-
-  static  TextStyle kRobotoReg40ColorBlack600 = TextStyle(
+  static TextStyle kRobotoReg40ColorBlack600 = TextStyle(
     fontWeight: FontWeight.w600,
     fontFamily: 'Roboto-Regular',
     fontSize: 40.sp,
@@ -43,13 +41,12 @@ class AppTextStyles {
   );
 
   static TextStyle black16SemiboldUnderline = TextStyle(
-    fontSize: 16.sp,
-    fontFamily: 'Gilroy',
-    height: 1.2,
-    fontWeight: FontWeight.w600,
-    color: AppColors.mainBlack,
-    decoration: TextDecoration.underline
-  );
+      fontSize: 16.sp,
+      fontFamily: 'Gilroy',
+      height: 1.2,
+      fontWeight: FontWeight.w600,
+      color: AppColors.mainBlack,
+      decoration: TextDecoration.underline);
 
   static TextStyle black17SemiBold = TextStyle(
     fontSize: 17.sp,
@@ -121,8 +118,6 @@ class AppTextStyles {
     color: AppColors.blackGrey,
   );
 
-
-
   static TextStyle black12Medium = TextStyle(
     fontSize: 12.sp,
     fontFamily: 'SF Pro Display',
@@ -144,7 +139,6 @@ class AppTextStyles {
     color: AppColors.hintColor,
   );
 
-
   static TextStyle hometext = TextStyle(
     fontSize: 16.sp,
     fontFamily: 'SF Pro Display',
@@ -152,7 +146,7 @@ class AppTextStyles {
     color: AppColors.hintColor,
   );
 
-  static TextStyle textbottom= TextStyle(
+  static TextStyle textbottom = TextStyle(
     fontSize: 16.sp,
     fontFamily: 'SF Pro Display',
     fontWeight: FontWeight.w500,
@@ -202,22 +196,23 @@ class AppTextStyles {
     color: AppColors.black,
   );
 
-  static TextStyle profitext= TextStyle(
+  static TextStyle profitext = TextStyle(
     fontSize: 16.sp,
     fontFamily: 'SF Pro Display',
     fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
   static TextStyle profile = TextStyle(
-     fontWeight: FontWeight.w500,
-     fontFamily: 'SF Pro Display',
-     fontSize: 16.sp,
-     color: Colors.black,);
+    fontWeight: FontWeight.w500,
+    fontFamily: 'SF Pro Display',
+    fontSize: 16.sp,
+    color: Colors.black,
+  );
 
   static TextStyle about = TextStyle(
     fontWeight: FontWeight.w600,
     fontFamily: 'SF Pro Display',
     fontSize: 20,
-    color: Colors.black,);
-
+    color: Colors.black,
+  );
 }
