@@ -39,11 +39,9 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(),
-            Container(
-              color: Colors.green,
-            ),
+            Image(image: AssetImage('AppIcon.png')),
             const Text(
-              'Добро пожаловать в Doce ',
+              'Добро пожаловать в АманЖол ',
               style: TextStyle(fontSize: 16),
             ),
           ],

@@ -23,9 +23,8 @@ class _MainState extends State<Main> {
     // TODO: implement initState
     super.initState();
     screens = (widget.role == 'ROLE_USER')
-        ? [const Home(), const SPPage(), const MyOrders(), const MenuPage()]
+        ? [const SPPage(), const MyOrders(), const MenuPage()]
         : [
-            const Home(),
             const spAdminPage(),
             const MyOrders(),
             const MenuPage()
@@ -66,16 +65,10 @@ class _MainState extends State<Main> {
               items: [
                 BottomNavigationBarItem(
                     icon: Icon(
-                      Icons.search,
-                      color: index == 0 ? Colors.blue : Colors.black,
-                    ),
-                    label: 'Отследить'),
-                BottomNavigationBarItem(
-                    icon: Icon(
                       Icons.location_on_outlined,
                       color: index == 1 ? Colors.blue : Colors.black,
                     ),
-                    label: 'Пункты SP'),
+                    label: 'Пункты'),
                 BottomNavigationBarItem(
 
                     // icon: Icon(
@@ -84,7 +77,7 @@ class _MainState extends State<Main> {
                       'assets/icons/send.svg',
                       color: index == 2 ? Colors.blue : Colors.black,
                     ),
-                    label: 'Мои заказы'),
+                    label: 'Справочники'),
                 BottomNavigationBarItem(
                     icon: Icon(
                       Icons.home_outlined,
