@@ -14,14 +14,14 @@ import '../model/points_model.dart';
 import 'editAdminData/editAdminData.dart';
 
 class spAdminPage extends StatefulWidget {
-  const spAdminPage({Key? key}) : super(key: key);
+  spAdminPage({Key? key}) : super(key: key);
 
   @override
   State<spAdminPage> createState() => _spAdminPageState();
 }
 
 class _spAdminPageState extends State<spAdminPage> {
-  late CameraPosition _initialCameraPosition = const CameraPosition(
+  late CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(42.882004, 74.582748),
     zoom: 11.5,
   );
@@ -51,12 +51,12 @@ class _spAdminPageState extends State<spAdminPage> {
       print(data.toString() + '123234');
       _latLng = LatLng(data.latitude!, data.longitude!);
     } else {
-      _latLng = const LatLng(37.4219983, -122.084);
+      _latLng = LatLng(37.4219983, -122.084);
     }
     return _latLng;
   }
 
-  // static const _initialCameraPosition = CameraPosition(
+  // static  _initialCameraPosition = CameraPosition(
   //     target:  LatLng(42.882004, 74.582748),  zoom: 11.5,);
   //
 
@@ -64,10 +64,10 @@ class _spAdminPageState extends State<spAdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Пункты SP'),
+        title: Text('Пункты SP'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 0),
+        padding: EdgeInsets.only(top: 0),
         child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Stack(children: [
@@ -75,7 +75,7 @@ class _spAdminPageState extends State<spAdminPage> {
                 future: getMyCoordsLocator(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Center(child: CircularProgressIndicator());
                   }
                   if (snapshot.hasData) {
                     return GoogleMap(
@@ -92,7 +92,7 @@ class _spAdminPageState extends State<spAdminPage> {
                       polylines: _polyline,
                     );
                   }
-                  return const Center(child: CircularProgressIndicator());
+                  return Center(child: CircularProgressIndicator());
                 },
               ),
               if (adminMarkers.length > 1)
@@ -112,9 +112,9 @@ class _spAdminPageState extends State<spAdminPage> {
                     child: Container(
                       width: 50,
                       height: 50,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           shape: BoxShape.circle, color: Colors.blue),
-                      child: const Icon(
+                      child: Icon(
                         Icons.edit,
                         color: Colors.white,
                       ),
@@ -140,9 +140,9 @@ class _spAdminPageState extends State<spAdminPage> {
                   child: Container(
                     width: 50,
                     height: 50,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         shape: BoxShape.circle, color: Colors.blue),
-                    child: const Icon(
+                    child: Icon(
                       Icons.clear,
                       color: Colors.white,
                     ),
@@ -167,7 +167,7 @@ class _spAdminPageState extends State<spAdminPage> {
                                     future: futureInfoPoint,
                                     builder: (context, snapshot2) {
                                       if (snapshot2.hasError) {
-                                        return const Center(
+                                        return Center(
                                             child: CircularProgressIndicator());
                                       }
                                       if (snapshot2.hasData) {
@@ -250,7 +250,7 @@ class _spAdminPageState extends State<spAdminPage> {
                                           ),
                                         );
                                       }
-                                      return const Center(
+                                      return Center(
                                           child: CircularProgressIndicator());
                                     },
                                   );
@@ -262,7 +262,7 @@ class _spAdminPageState extends State<spAdminPage> {
                     }
                     return Container();
                   }
-                  return const Center(child: SizedBox());
+                  return Center(child: SizedBox());
                 },
               ),
             ])),

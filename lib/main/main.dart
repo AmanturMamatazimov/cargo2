@@ -23,13 +23,8 @@ class _MainState extends State<Main> {
     // TODO: implement initState
     super.initState();
     screens = (widget.role == 'ROLE_USER')
-        ? [const Home(), const SPPage(), const MyOrders(), const MenuPage()]
-        : [
-            const Home(),
-            const spAdminPage(),
-            const MyOrders(),
-            const MenuPage()
-          ];
+        ? [Home(), SPPage(), MyOrders(), MenuPage()]
+        : [Home(), spAdminPage(), MyOrders(), MenuPage()];
   }
 
   @override
