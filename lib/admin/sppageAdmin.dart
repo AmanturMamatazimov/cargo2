@@ -11,6 +11,7 @@ import 'package:location/location.dart' as loc;
 
 import '../fetches/info_point_fetch.dart';
 import '../model/points_model.dart';
+import 'editAdminData/editAdminData.dart';
 
 class spAdminPage extends StatefulWidget {
   const spAdminPage({Key? key}) : super(key: key);
@@ -103,7 +104,7 @@ class _spAdminPageState extends State<spAdminPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              SendFormData(latLng: markers.last.position),
+                              EditAdminData(adminMarkers: adminMarkers),
                         ),
                       );
                     },

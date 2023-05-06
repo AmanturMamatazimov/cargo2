@@ -53,6 +53,26 @@ class AuthClient {
     }
   }
 
+  Future<dynamic> getInfoContractor() async {
+    var uri = Uri(
+      scheme: 'http',
+      host: ip,
+      port: port,
+      path: 'api/contractors',
+    );
+
+    var response = await client.get(uri);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print(response.body);
+      return response.body;
+    } else {
+      //throw exception and catch it in UI
+      print('error not found');
+      print(response.statusCode);
+      print(response.body);
+    }
+  }
+
   Future<dynamic> getInfoPoint(String id) async {
     var uri = Uri(
       scheme: 'http',
