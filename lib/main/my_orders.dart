@@ -1,4 +1,8 @@
+import 'package:cargo_app/fetches/info_contractor_fetch.dart';
+import 'package:cargo_app/main/select_contractor.dart';
+import 'package:cargo_app/model/info_contractor_model.dart';
 import 'package:cargo_app/my_orders/my_orders.dart';
+import 'package:cargo_app/services/service.dart';
 import 'package:cargo_app/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,47 +17,62 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
+  late Future<InfoContractorModel> futureInfoContractor;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    futureInfoContractor = fetchInfoContractor();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Мои заказы'),
+        title: Text('Справочники/подрядчик'),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            SizedBox(),
-            Text(
-              'У вас еще нет заказов',
-              style: AppTextStyles.blackGrey16Regular,
-            ),
-            Image.asset(
-              'assets/girl.png',
-              width: 300.w,
-              height: 300.h,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Myorder(),
-                    ));
+      body: FutureBuilder<InfoContractorModel>(
+        future: futureInfoContractor,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data!.data!.length!,
+              itemBuilder: (context, int index) {
+                return Container(
+                  margin: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.blue,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: const EdgeInsets.all(12.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SelectContractor(data:
+                              snapshot.data!.data!.elementAt(index).id),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      child: Text("${snapshot.data!.data!.elementAt(index).name}"),
+                    ),
+                  ),
+                );
               },
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.mainColor),
-                child: Center(
-                  child: Text('Заказать', style: AppTextStyles.textbottom),
-                ),
-              ),
-            ),
-          ],
-        ),
+            );
+          }
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }

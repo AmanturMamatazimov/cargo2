@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'my_post.dart';
+
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
 
@@ -46,7 +48,7 @@ class _MenuPageState extends State<MenuPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const MyOrders(),
+                    builder: (context) => MyPost(),
                   ),
                 );
               },

@@ -60,7 +60,7 @@ class _SPPageState extends State<SPPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Пункты SP'),
+        title: const Text('Пункты '),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 0),
